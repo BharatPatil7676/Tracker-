@@ -1,0 +1,4758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Dream Universe 🚀</title>
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#03020d">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent">
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+    background:#03020d;
+
+    color:white;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+}
+
+
+/* =====================================================
+   SPACE BACKGROUND
+===================================================== */
+
+.space{
+    position:fixed;
+    inset:0;
+
+    background:
+
+    radial-gradient(
+        circle at 15% 20%,
+        rgba(118,52,255,.25),
+        transparent 25%
+    ),
+
+    radial-gradient(
+        circle at 85% 25%,
+        rgba(0,166,255,.18),
+        transparent 25%
+    ),
+
+    radial-gradient(
+        circle at 50% 90%,
+        rgba(255,0,153,.16),
+        transparent 30%
+    ),
+
+    #03020d;
+
+    z-index:-10;
+}
+
+
+.stars,
+.stars2,
+.stars3{
+
+    position:fixed;
+
+    inset:-50%;
+
+    pointer-events:none;
+
+    background-image:
+
+    radial-gradient(
+        circle,
+        rgba(255,255,255,.9) 1px,
+        transparent 1.5px
+    ),
+
+    radial-gradient(
+        circle,
+        rgba(130,200,255,.7) 1px,
+        transparent 1.5px
+    ),
+
+    radial-gradient(
+        circle,
+        rgba(255,150,230,.8) 1px,
+        transparent 1.5px
+    );
+
+    background-size:
+    75px 75px,
+    120px 120px,
+    170px 170px;
+
+    animation:
+    starMove 50s linear infinite;
+
+    opacity:.6;
+
+    z-index:-9;
+}
+
+.stars2{
+    transform:scale(1.4);
+    animation-duration:90s;
+    opacity:.35;
+}
+
+.stars3{
+    transform:scale(1.8);
+    animation-duration:140s;
+    opacity:.2;
+}
+
+@keyframes starMove{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(250px);
+    }
+
+}
+
+
+/* =====================================================
+   SHOOTING STARS
+===================================================== */
+
+.shooting{
+
+    position:fixed;
+
+    width:120px;
+    height:2px;
+
+    background:
+    linear-gradient(
+        90deg,
+        transparent,
+        white
+    );
+
+    transform:rotate(-35deg);
+
+    opacity:0;
+
+    z-index:-5;
+
+    animation:shoot 6s linear infinite;
+}
+
+.shooting:nth-child(2){
+    top:20%;
+    left:80%;
+    animation-delay:2s;
+}
+
+.shooting:nth-child(3){
+    top:60%;
+    left:10%;
+    animation-delay:4s;
+}
+
+@keyframes shoot{
+
+    0%{
+        transform:
+        translate(0,0)
+        rotate(-35deg);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    30%{
+        transform:
+        translate(-350px,250px)
+        rotate(-35deg);
+
+        opacity:0;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app{
+
+    width:100%;
+
+    max-width:650px;
+
+    margin:auto;
+
+    padding:
+    20px
+    14px
+    80px;
+}
+
+
+/* =====================================================
+   TOP
+===================================================== */
+
+.top{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    align-items:
+    center;
+
+    margin-bottom:20px;
+}
+
+.logo small{
+
+    color:#9288b7;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+}
+
+.logo h1{
+
+    font-size:30px;
+
+    margin-top:4px;
+}
+
+.logo h1 span{
+
+    background:
+    linear-gradient(
+        90deg,
+        #ff55ad,
+        #8b6cff,
+        #42dfff
+    );
+
+    background-clip:text;
+
+    -webkit-background-clip:text;
+
+    color:transparent;
+
+    -webkit-text-fill-color:transparent;
+}
+
+
+.logo p{
+
+    color:#77718d;
+
+    font-size:9px;
+
+    margin-top:4px;
+}
+
+
+.settings-btn{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+    background:
+    rgba(255,255,255,.07);
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(15px);
+
+    transition:.3s;
+}
+
+.settings-btn:hover{
+
+    transform:rotate(90deg);
+
+}
+
+
+/* =====================================================
+   XP
+===================================================== */
+
+.xp{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:
+    space-between;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,196,62,.12),
+        rgba(255,91,174,.08)
+    );
+
+    border:
+    1px solid
+    rgba(255,255,255,.1);
+
+    padding:13px 16px;
+
+    border-radius:20px;
+
+    margin-bottom:15px;
+
+    backdrop-filter:blur(15px);
+}
+
+.xp-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.xp-star{
+
+    font-size:28px;
+
+    animation:
+    starPulse 2s infinite;
+}
+
+@keyframes starPulse{
+
+    50%{
+        transform:scale(1.15);
+    }
+
+}
+
+.xp-number{
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    color:#ffd34e;
+}
+
+.xp-label{
+
+    display:block;
+
+    font-size:7px;
+
+    color:#81798f;
+
+    letter-spacing:1px;
+}
+
+.level{
+
+    text-align:right;
+
+    color:#aaa2ba;
+
+    font-size:8px;
+}
+
+.level b{
+
+    display:block;
+
+    color:white;
+
+    font-size:16px;
+
+}
+
+
+/* =====================================================
+   GALAXY HERO
+===================================================== */
+
+.hero{
+
+    position:relative;
+
+    min-height:390px;
+
+    border-radius:35px;
+
+    overflow:hidden;
+
+    margin-bottom:15px;
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    background:
+
+    radial-gradient(
+        circle at 50% 35%,
+        rgba(126,81,255,.28),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 20% 80%,
+        rgba(255,66,180,.14),
+        transparent 25%
+    ),
+
+    #0a0820;
+
+    box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.5);
+}
+
+.moon{
+
+    position:absolute;
+
+    top:25px;
+
+    right:30px;
+
+    font-size:30px;
+
+    animation:
+    moonFloat 5s ease-in-out infinite;
+}
+
+@keyframes moonFloat{
+
+    50%{
+        transform:
+        translateY(-8px);
+    }
+
+}
+
+.planet{
+
+    position:absolute;
+
+    top:60px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    width:145px;
+
+    height:145px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:65px;
+
+    background:
+
+    radial-gradient(
+        circle at 30% 25%,
+        white,
+        #ffacd9 8%,
+        #8c5cff 42%,
+        #24154d 75%
+    );
+
+    box-shadow:
+
+    0 0 35px
+    rgba(145,90,255,.8),
+
+    0 0 100px
+    rgba(100,70,255,.35);
+
+    animation:
+    planetFloat 4s ease-in-out infinite;
+
+    z-index:3;
+}
+
+@keyframes planetFloat{
+
+    50%{
+        transform:
+        translateX(-50%)
+        translateY(-10px);
+    }
+
+}
+
+.ring{
+
+    position:absolute;
+
+    top:105px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%)
+    rotate(-12deg);
+
+    width:220px;
+
+    height:60px;
+
+    border:
+    3px solid
+    rgba(255,210,248,.65);
+
+    border-radius:50%;
+
+    z-index:4;
+}
+
+.orbit{
+
+    position:absolute;
+
+    top:35px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%);
+
+    width:250px;
+
+    height:250px;
+
+    border:
+    1px dashed
+    rgba(255,255,255,.12);
+
+    border-radius:50%;
+
+    animation:
+    orbit 18s linear infinite;
+}
+
+.orbit::after{
+
+    content:"⭐";
+
+    position:absolute;
+
+    top:-12px;
+
+    left:50%;
+
+}
+
+@keyframes orbit{
+
+    to{
+        transform:
+        translateX(-50%)
+        rotate(360deg);
+    }
+
+}
+
+.ship{
+
+    position:absolute;
+
+    top:145px;
+
+    left:30px;
+
+    font-size:34px;
+
+    animation:
+    shipFly 7s ease-in-out infinite;
+}
+
+@keyframes shipFly{
+
+    0%,100%{
+        transform:
+        translate(0,0)
+        rotate(-10deg);
+    }
+
+    50%{
+        transform:
+        translate(280px,-50px)
+        rotate(10deg);
+    }
+
+}
+
+.hero-text{
+
+    position:absolute;
+
+    left:20px;
+
+    right:20px;
+
+    bottom:22px;
+
+    text-align:center;
+}
+
+.hero-text small{
+
+    color:#9288b7;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+}
+
+.hero-text h2{
+
+    font-size:23px;
+
+    margin:5px 0;
+
+}
+
+.hero-text p{
+
+    color:#928ba5;
+
+    font-size:10px;
+
+}
+
+.big-progress{
+
+    margin-top:15px;
+}
+
+.big-progress-top{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    font-size:9px;
+
+    color:#aaa1b7;
+
+    margin-bottom:6px;
+}
+
+.big-progress-top b{
+
+    color:#ff75bc;
+}
+
+.progress{
+
+    height:9px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress div{
+
+    height:100%;
+
+    width:0%;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ff4eaa,
+        #8265ff,
+        #4edcff
+    );
+
+    border-radius:20px;
+
+    transition:
+    width .7s;
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:7px;
+
+    margin-bottom:15px;
+}
+
+.stat{
+
+    text-align:center;
+
+    padding:13px 3px;
+
+    border-radius:19px;
+
+    background:
+    rgba(255,255,255,.06);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+    backdrop-filter:
+    blur(15px);
+}
+
+.stat span{
+
+    display:block;
+
+    font-size:20px;
+}
+
+.stat b{
+
+    display:block;
+
+    font-size:18px;
+
+    margin-top:3px;
+}
+
+.stat small{
+
+    display:block;
+
+    color:#716a81;
+
+    font-size:6px;
+
+    margin-top:3px;
+
+    letter-spacing:1px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+    background:
+    rgba(255,255,255,.055);
+
+    border:
+    1px solid
+    rgba(255,255,255,.1);
+
+    border-radius:27px;
+
+    padding:18px;
+
+    margin-bottom:15px;
+
+    backdrop-filter:
+    blur(18px);
+
+    box-shadow:
+    0 15px 40px
+    rgba(0,0,0,.18);
+}
+
+.title{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+}
+
+.title small{
+
+    color:#817991;
+
+    font-size:7px;
+
+    letter-spacing:1.5px;
+}
+
+.title h2{
+
+    font-size:17px;
+
+    margin-top:4px;
+}
+
+.title strong{
+
+    color:#ff70b8;
+
+    font-size:10px;
+}
+
+
+/* =====================================================
+   DAY MAP
+===================================================== */
+
+.days{
+
+    display:flex;
+
+    gap:8px;
+
+    overflow-x:auto;
+
+    padding:4px 2px 7px;
+}
+
+.days::-webkit-scrollbar{
+    display:none;
+}
+
+.day{
+
+    flex-shrink:0;
+
+    width:52px;
+
+    height:64px;
+
+    border-radius:17px;
+
+    border:
+    1px solid
+    rgba(255,255,255,.1);
+
+    background:
+    rgba(255,255,255,.055);
+
+    color:#777184;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.day b{
+
+    display:block;
+
+    color:white;
+
+    font-size:17px;
+}
+
+.day small{
+
+    font-size:6px;
+
+    display:block;
+
+    margin-top:5px;
+}
+
+.day.active{
+
+    background:
+    linear-gradient(
+        145deg,
+        #ff54ac,
+        #735cff
+    );
+
+    color:white;
+
+    transform:
+    translateY(-5px);
+
+    box-shadow:
+    0 10px 25px
+    rgba(180,70,240,.35);
+}
+
+.day.done{
+
+    border-color:
+    #4ee6a3;
+}
+
+.day.done small{
+
+    color:#55e8ad;
+}
+
+
+/* =====================================================
+   HABITS
+===================================================== */
+
+.habit{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    padding:12px;
+
+    border-radius:18px;
+
+    margin-bottom:8px;
+
+    background:
+    rgba(255,255,255,.045);
+
+    border:
+    1px solid
+    rgba(255,255,255,.06);
+
+    transition:.25s;
+}
+
+.habit.done{
+
+    background:
+    rgba(65,225,155,.09);
+
+    border-color:
+    rgba(65,225,155,.2);
+}
+
+.habit-icon{
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.07);
+
+    font-size:21px;
+}
+
+.habit-info{
+
+    flex:1;
+}
+
+.habit-info b{
+
+    display:block;
+
+    font-size:11px;
+}
+
+.habit-info small{
+
+    color:#777184;
+
+    font-size:7px;
+
+    display:block;
+
+    margin-top:3px;
+}
+
+.habit.done .habit-info b{
+
+    color:#65dca6;
+
+    text-decoration:
+    line-through;
+}
+
+.habit-xp{
+
+    color:#ffd34e;
+
+    font-size:8px;
+
+    font-weight:bold;
+}
+
+.check{
+
+    width:32px;
+
+    height:32px;
+
+    border-radius:50%;
+
+    border:
+    2px solid
+    #514b61;
+
+    background:
+    transparent;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+}
+
+.habit.done .check{
+
+    background:
+    linear-gradient(
+        135deg,
+        #4ee4a4,
+        #45cfff
+    );
+
+    border:none;
+
+    box-shadow:
+    0 0 15px
+    rgba(70,230,170,.4);
+}
+
+
+/* =====================================================
+   ADD MISSION BUTTON
+===================================================== */
+
+.add-mission-btn{
+
+    width:100%;
+
+    border:
+    1px dashed
+    rgba(255,255,255,.18);
+
+    background:
+    rgba(255,255,255,.035);
+
+    color:#ff70b8;
+
+    border-radius:17px;
+
+    padding:12px;
+
+    margin-top:5px;
+
+    font-size:9px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.add-mission-btn:hover{
+
+    background:
+    rgba(255,85,173,.08);
+
+    border-color:
+    rgba(255,85,173,.35);
+
+    transform:translateY(-2px);
+}
+
+
+/* =====================================================
+   JOURNEY MESSAGE
+===================================================== */
+
+.message{
+
+    text-align:center;
+
+    padding:12px;
+
+    margin-top:12px;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(255,75,180,.06),
+        rgba(110,90,255,.08)
+    );
+
+    color:#a39aad;
+
+    font-size:9px;
+}
+
+
+/* =====================================================
+   GRAPH
+===================================================== */
+
+.graph{
+
+    height:160px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    gap:5px;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.1);
+}
+
+.graph-day{
+
+    flex:1;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:5px;
+}
+
+.graph-bar{
+
+    width:80%;
+
+    min-height:3px;
+
+    border-radius:
+    7px 7px 2px 2px;
+
+    background:
+    linear-gradient(
+        to top,
+        #ff51a9,
+        #7464ff
+    );
+
+    transition:
+    height .6s;
+}
+
+.graph-bar.today{
+
+    background:
+    linear-gradient(
+        to top,
+        #55e3a5,
+        #4bd3ff
+    );
+}
+
+.graph-day small{
+
+    font-size:6px;
+
+    color:#696375;
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.badges{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:8px;
+}
+
+.badge{
+
+    padding:12px 3px;
+
+    text-align:center;
+
+    border-radius:17px;
+
+    background:
+    rgba(255,255,255,.04);
+
+    opacity:.25;
+
+    filter:grayscale(1);
+
+    transition:.4s;
+}
+
+.badge.unlocked{
+
+    opacity:1;
+
+    filter:none;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,200,70,.13),
+        rgba(255,70,170,.1)
+    );
+
+    border:
+    1px solid
+    rgba(255,200,70,.18);
+
+    box-shadow:
+    0 5px 20px
+    rgba(255,180,60,.12);
+}
+
+.badge-icon{
+
+    font-size:26px;
+}
+
+.badge b{
+
+    display:block;
+
+    font-size:7px;
+
+    margin-top:5px;
+}
+
+.badge small{
+
+    color:#777080;
+
+    font-size:6px;
+
+    display:block;
+
+    margin-top:3px;
+}
+
+
+/* =====================================================
+   REWARD SHOP
+===================================================== */
+
+.reward-intro{
+
+    color:#8b8398;
+
+    font-size:9px;
+
+    margin-bottom:12px;
+
+    line-height:1.5;
+}
+
+.rewards{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:9px;
+}
+
+.reward{
+
+    padding:15px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.065),
+        rgba(255,255,255,.025)
+    );
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+}
+
+.reward-icon{
+
+    font-size:28px;
+}
+
+.reward h3{
+
+    font-size:11px;
+
+    margin-top:5px;
+}
+
+.reward p{
+
+    color:#777184;
+
+    font-size:7px;
+
+    line-height:1.4;
+
+    min-height:22px;
+
+    margin-top:3px;
+}
+
+.reward button{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:9px;
+
+    margin-top:9px;
+
+    color:white;
+
+    font-size:8px;
+
+    font-weight:bold;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff55ad,
+        #755fff
+    );
+
+    cursor:pointer;
+}
+
+.reward button:disabled{
+
+    background:
+    rgba(255,255,255,.06);
+
+    color:#625c6c;
+
+    cursor:not-allowed;
+}
+
+
+/* =====================================================
+   DREAM CARD
+===================================================== */
+
+.dream{
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    padding:20px;
+
+    border-radius:27px;
+
+    background:
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(120,80,255,.18),
+        transparent 35%
+    ),
+
+    rgba(255,255,255,.05);
+
+    border:
+    1px solid
+    rgba(255,255,255,.09);
+
+    margin-bottom:15px;
+}
+
+.dream-icon{
+
+    font-size:43px;
+}
+
+.dream small{
+
+    color:#817890;
+
+    font-size:7px;
+
+    letter-spacing:2px;
+}
+
+.dream h2{
+
+    font-size:16px;
+
+    margin:5px 0;
+}
+
+.dream p{
+
+    color:#878091;
+
+    font-size:8px;
+
+    line-height:1.5;
+}
+
+
+/* =====================================================
+   SETTINGS PANEL
+===================================================== */
+
+.settings-bg{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.75);
+
+    backdrop-filter:
+    blur(10px);
+
+    display:none;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    z-index:100;
+}
+
+.settings-bg.show{
+
+    display:flex;
+}
+
+.settings{
+
+    width:100%;
+
+    max-width:650px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #17112e,
+        #09071b
+    );
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+    border-radius:
+    30px 30px 0 0;
+
+    padding:25px;
+
+    animation:
+    slideUp .3s ease;
+}
+
+@keyframes slideUp{
+
+    from{
+        transform:translateY(100%);
+    }
+
+    to{
+        transform:translateY(0);
+    }
+
+}
+
+.settings-header{
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.settings-header h2{
+
+    font-size:21px;
+}
+
+.close{
+
+    border:none;
+
+    background:
+    rgba(255,255,255,.08);
+
+    color:white;
+
+    width:35px;
+
+    height:35px;
+
+    border-radius:50%;
+
+    cursor:pointer;
+}
+
+.setting{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:
+    space-between;
+
+    padding:15px 5px;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.06);
+}
+
+.setting-info b{
+
+    display:block;
+
+    font-size:12px;
+}
+
+.setting-info small{
+
+    display:block;
+
+    color:#777080;
+
+    font-size:8px;
+
+    margin-top:3px;
+}
+
+.toggle{
+
+    width:45px;
+
+    height:25px;
+
+    border-radius:30px;
+
+    background:#3b3747;
+
+    cursor:pointer;
+
+    position:relative;
+}
+
+.toggle::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:4px;
+
+    left:4px;
+
+    width:17px;
+
+    height:17px;
+
+    border-radius:50%;
+
+    background:white;
+
+    transition:.25s;
+}
+
+.toggle.on{
+
+    background:
+    linear-gradient(
+        90deg,
+        #ff55ad,
+        #7565ff
+    );
+}
+
+.toggle.on::after{
+
+    left:24px;
+}
+
+.themes{
+
+    display:flex;
+
+    gap:7px;
+
+    flex-wrap:wrap;
+
+    margin-top:10px;
+}
+
+.theme{
+
+    padding:8px 12px;
+
+    border-radius:15px;
+
+    border:
+    1px solid
+    rgba(255,255,255,.1);
+
+    background:
+    rgba(255,255,255,.05);
+
+    color:white;
+
+    font-size:8px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+.popup-bg{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.82);
+
+    backdrop-filter:
+    blur(12px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:200;
+}
+
+.popup-bg.show{
+
+    display:flex;
+}
+
+.popup{
+
+    width:100%;
+
+    max-width:360px;
+
+    text-align:center;
+
+    padding:30px 23px;
+
+    border-radius:32px;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #392160,
+        #110d26
+    );
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+    box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.8);
+
+    animation:
+    pop .35s ease;
+}
+
+@keyframes pop{
+
+    from{
+        transform:scale(.7);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}
+
+.popup-stars{
+
+    color:#ffd34e;
+
+    letter-spacing:8px;
+
+    font-size:13px;
+}
+
+.popup-emoji{
+
+    font-size:55px;
+
+    margin:8px;
+}
+
+.popup h2{
+
+    font-size:23px;
+}
+
+.popup p{
+
+    color:#a29aaa;
+
+    font-size:10px;
+
+    margin-top:6px;
+}
+
+.popup-xp{
+
+    display:inline-block;
+
+    padding:9px 18px;
+
+    margin:17px 0;
+
+    border-radius:20px;
+
+    color:#ffd34e;
+
+    background:
+    rgba(255,210,70,.1);
+
+    font-weight:bold;
+
+    font-size:12px;
+}
+
+.popup button{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:17px;
+
+    padding:14px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff55ad,
+        #7564ff
+    );
+
+    color:white;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   ADD MISSION POPUP
+===================================================== */
+
+.add-mission-bg{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.82);
+
+    backdrop-filter:
+    blur(12px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:250;
+}
+
+.add-mission-bg.show{
+
+    display:flex;
+}
+
+.add-mission{
+
+    width:100%;
+
+    max-width:380px;
+
+    padding:25px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #17112e,
+        #09071b
+    );
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+    box-shadow:
+    0 30px 100px
+    rgba(0,0,0,.8);
+}
+
+.add-mission h2{
+
+    font-size:20px;
+
+    margin-bottom:18px;
+}
+
+.input-label{
+
+    display:block;
+
+    color:#8b8398;
+
+    font-size:8px;
+
+    margin-bottom:6px;
+
+    letter-spacing:1px;
+}
+
+.mission-input{
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:13px;
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    background:
+    rgba(255,255,255,.06);
+
+    color:white;
+
+    outline:none;
+
+    margin-bottom:14px;
+
+    font-size:11px;
+}
+
+.mission-input:focus{
+
+    border-color:
+    #ff55ad;
+}
+
+.mission-row{
+
+    display:flex;
+
+    gap:10px;
+}
+
+.mission-row > div{
+
+    flex:1;
+}
+
+.mission-actions{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:5px;
+}
+
+.mission-actions button{
+
+    flex:1;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:14px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:9px;
+
+    font-weight:bold;
+}
+
+.cancel-mission{
+
+    background:
+    rgba(255,255,255,.07);
+}
+
+.save-mission{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff55ad,
+        #7564ff
+    );
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:390px){
+
+    .app{
+        padding-left:10px;
+        padding-right:10px;
+    }
+
+    .logo h1{
+        font-size:27px;
+    }
+
+    .stats{
+        gap:5px;
+    }
+
+    .badges{
+        grid-template-columns:
+        repeat(4,1fr);
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="space"></div>
+
+<div class="stars"></div>
+<div class="stars2"></div>
+<div class="stars3"></div>
+
+<div class="shooting"></div>
+<div class="shooting"></div>
+<div class="shooting"></div>
+
+
+<div class="app">
+
+
+<header class="top">
+
+    <div class="logo">
+
+        <small>
+            MY CHILDHOOD DREAM UNIVERSE
+        </small>
+
+        <h1>
+            Dream<span>Universe</span> 🚀
+        </h1>
+
+        <p>
+            Build the life you once dreamed about.
+        </p>
+
+    </div>
+
+
+    <button
+        class="settings-btn"
+        onclick="openSettings()">
+
+        ⚙️
+
+    </button>
+
+</header>
+
+
+<div class="xp">
+
+    <div class="xp-left">
+
+        <div class="xp-star">
+            ⭐
+        </div>
+
+        <div>
+
+            <div class="xp-number"
+                 id="xp">
+
+                0
+
+            </div>
+
+            <span class="xp-label">
+                TOTAL XP
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="level">
+
+        POWER LEVEL
+
+        <b>
+            LVL <span id="level">1</span>
+        </b>
+
+    </div>
+
+</div>
+
+
+<section class="hero">
+
+    <div class="moon">
+        🌙
+    </div>
+
+    <div class="orbit"></div>
+
+    <div class="planet"
+         id="planet">
+
+        🌱
+
+    </div>
+
+    <div class="ring"></div>
+
+    <div class="ship">
+        🚀
+    </div>
+
+    <div class="hero-text">
+
+        <small>
+            GALAXY JOURNEY
+        </small>
+
+        <h2 id="journeyTitle">
+            The Dream Begins
+        </h2>
+
+        <p id="journeyMessage">
+            Every great life begins with one decision.
+        </p>
+
+        <div class="big-progress">
+
+            <div class="big-progress-top">
+
+                <span>
+                    UNIVERSE PROGRESS
+                </span>
+
+                <b id="overallPercent">
+                    0%
+                </b>
+
+            </div>
+
+            <div class="progress">
+
+                <div id="overallBar"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="stats">
+
+    <div class="stat">
+
+        <span>🔥</span>
+
+        <b id="currentStreak">
+            0
+        </b>
+
+        <small>
+            STREAK
+        </small>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span>🏆</span>
+
+        <b id="bestStreak">
+            0
+        </b>
+
+        <small>
+            BEST
+        </small>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span>🪐</span>
+
+        <b id="daysCompleted">
+            0
+        </b>
+
+        <small>
+            PLANETS
+        </small>
+
+    </div>
+
+
+    <div class="stat">
+
+        <span>💎</span>
+
+        <b id="badgeNumber">
+            0
+        </b>
+
+        <small>
+            BADGES
+        </small>
+
+    </div>
+
+</div>
+
+
+<section class="card">
+
+    <div class="title">
+
+        <div>
+
+            <small>
+                🗺️ YOUR GALAXY
+            </small>
+
+            <h2>
+                21 Day Journey
+            </h2>
+
+        </div>
+
+        <strong id="dayNumber">
+            DAY 1
+        </strong>
+
+    </div>
+
+
+    <div
+        class="days"
+        id="days">
+
+    </div>
+
+</section>
+
+
+<section class="card">
+
+    <div class="title">
+
+        <div>
+
+            <small>
+                🌟 TODAY'S MISSION
+            </small>
+
+            <h2>
+                Build Your Future
+            </h2>
+
+        </div>
+
+        <strong id="completedText">
+            0/8
+        </strong>
+
+    </div>
+
+
+    <div id="habitList"></div>
+
+
+    <button
+        class="add-mission-btn"
+        onclick="openAddMission()">
+
+        ＋ Add Your Own Mission
+
+    </button>
+
+
+    <div
+        class="message"
+        id="dailyMessage">
+
+        Your future is waiting for you. 🌌
+
+    </div>
+
+</section>
+
+
+<section class="card">
+
+    <div class="title">
+
+        <div>
+
+            <small>
+                ⚡ POWER
+            </small>
+
+            <h2>
+                Level Progress
+            </h2>
+
+        </div>
+
+        <strong>
+            LVL <span id="level2">1</span>
+        </strong>
+
+    </div>
+
+
+    <div class="progress">
+
+        <div id="levelProgress"></div>
+
+    </div>
+
+
+    <p style="
+        color:#777080;
+        font-size:8px;
+        margin-top:7px;
+    ">
+
+        <span id="levelXP">0</span>
+        / 100 XP to next level
+
+    </p>
+
+</section>
+
+
+<section class="card">
+
+    <div class="title">
+
+        <div>
+
+            <small>
+                📊 YOUR STORY
+            </small>
+
+            <h2>
+                Progress Through The Stars
+            </h2>
+
+        </div>
+
+        <span>
+            🌠
+        </span>
+
+    </div>
+
+
+    <div
+        class="graph"
+        id="graph">
+
+    </div>
+
+</section>
+
+
+<section class="card">
+
+    <div class="title">
+
+        <div>
+
+            <small>
+                🏆 MEMORIES
+            </small>
+
+            <h2>
+                Achievements
+            </h2>
+
+        </div>
+
+        <strong id="badgeCount">
+            0/8
+        </strong>
+
+    </div>
+
+
+    <div
+        class="badges"
+        id="badges">
+
+    </div>
+
+</section>
+
+
+<section class="card">
+
+    <div class="title">
+
+        <div>
+
+            <small>
+                🎁 REWARD GALAXY
+            </small>
+
+            <h2>
+                Spend Your XP
+            </h2>
+
+        </div>
+
+        <span>
+            💎
+        </span>
+
+    </div>
+
+
+    <p class="reward-intro">
+
+        XP isn't just a number.
+        Turn your hard work into something
+        you actually enjoy. ❤️
+
+    </p>
+
+
+    <div
+        class="rewards"
+        id="rewards">
+
+    </div>
+
+</section>
+
+
+<section class="dream">
+
+    <div class="dream-icon">
+        🌙
+    </div>
+
+    <div>
+
+        <small>
+            NEVER FORGET
+        </small>
+
+        <h2>
+            Your dreams deserve your effort.
+        </h2>
+
+        <p>
+            You don't need to change your entire
+            life today. Just win today.
+        </p>
+
+    </div>
+
+</section>
+
+
+</div>
+
+
+<!-- =================================================
+     SETTINGS
+================================================= -->
+
+<div
+    class="settings-bg"
+    id="settingsBg">
+
+    <div class="settings">
+
+        <div class="settings-header">
+
+            <h2>
+                ⚙️ Universe Settings
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeSettings()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-info">
+
+                <b>
+                    ✨ Space Effects
+                </b>
+
+                <small>
+                    Stars and cosmic animations
+                </small>
+
+            </div>
+
+            <div
+                class="toggle on"
+                id="effectsToggle"
+                onclick="toggleEffects()">
+
+            </div>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-info">
+
+                <b>
+                    🚀 Auto Next Day
+                </b>
+
+                <small>
+                    Move to the next day after completion
+                </small>
+
+            </div>
+
+            <div
+                class="toggle on"
+                id="autoToggle"
+                onclick="toggleAuto()">
+
+            </div>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div class="setting-info">
+
+                <b>
+                    🎨 Universe Theme
+                </b>
+
+                <small>
+                    Choose your galaxy
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="themes">
+
+            <button
+                class="theme"
+                onclick="theme('purple')">
+
+                💜 Dream
+
+            </button>
+
+            <button
+                class="theme"
+                onclick="theme('blue')">
+
+                💙 Ocean
+
+            </button>
+
+            <button
+                class="theme"
+                onclick="theme('pink')">
+
+                💗 Fantasy
+
+            </button>
+
+            <button
+                class="theme"
+                onclick="theme('green')">
+
+                💚 Galaxy
+
+            </button>
+
+        </div>
+
+
+        <div class="setting"
+             style="margin-top:15px">
+
+            <div class="setting-info">
+
+                <b>
+                    🗑️ Reset Universe
+                </b>
+
+                <small>
+                    Permanently erase your progress
+                </small>
+
+            </div>
+
+            <button
+                onclick="resetAll()"
+                style="
+                background:#35152c;
+                border:1px solid #63304f;
+                color:#ff79ba;
+                border-radius:12px;
+                padding:8px 12px;
+                font-size:8px;
+                ">
+
+                RESET
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     NORMAL POPUP
+================================================= -->
+
+<div
+    class="popup-bg"
+    id="popup">
+
+    <div class="popup">
+
+        <div class="popup-stars">
+            ✨ ⭐ ✨
+        </div>
+
+        <div
+            class="popup-emoji"
+            id="popupEmoji">
+
+            🎉
+
+        </div>
+
+        <h2 id="popupTitle">
+            Mission Complete!
+        </h2>
+
+        <p id="popupMessage">
+            You did something amazing.
+        </p>
+
+        <div class="popup-xp">
+
+            +<span id="earnedXP">10</span>
+            XP ⭐
+
+        </div>
+
+        <button
+            onclick="closePopup()">
+
+            Continue My Journey 🚀
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     ADD MISSION POPUP
+================================================= -->
+
+<div
+    class="add-mission-bg"
+    id="addMissionBg">
+
+    <div class="add-mission">
+
+        <h2>
+            🚀 Add New Mission
+        </h2>
+
+
+        <label class="input-label">
+            MISSION NAME
+        </label>
+
+        <input
+            type="text"
+            id="missionName"
+            class="mission-input"
+            placeholder="Example: Read 20 pages">
+
+
+        <div class="mission-row">
+
+            <div>
+
+                <label class="input-label">
+                    EMOJI
+                </label>
+
+                <input
+                    type="text"
+                    id="missionEmoji"
+                    class="mission-input"
+                    placeholder="📚"
+                    maxlength="2">
+
+            </div>
+
+
+            <div>
+
+                <label class="input-label">
+                    XP
+                </label>
+
+                <input
+                    type="number"
+                    id="missionXP"
+                    class="mission-input"
+                    placeholder="10"
+                    min="1"
+                    max="1000">
+
+            </div>
+
+        </div>
+
+
+        <div class="mission-actions">
+
+            <button
+                class="cancel-mission"
+                onclick="closeAddMission()">
+
+                CANCEL
+
+            </button>
+
+            <button
+                class="save-mission"
+                onclick="addMission()">
+
+                ADD MISSION 🚀
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   DEFAULT HABITS
+===================================================== */
+
+const defaultHabits = [
+
+    {
+        name:"Wake up before 6 AM",
+        icon:"🌅",
+        xp:10
+    },
+
+    {
+        name:"Sleep 7–9 hours",
+        icon:"😴",
+        xp:10
+    },
+
+    {
+        name:"Workout / Running",
+        icon:"🏃",
+        xp:15
+    },
+
+    {
+        name:"Keep room clean",
+        icon:"✨",
+        xp:10
+    },
+
+    {
+        name:"Write today's goals",
+        icon:"📝",
+        xp:10
+    },
+
+    {
+        name:"Study 6+ hours",
+        icon:"📚",
+        xp:20
+    },
+
+    {
+        name:"No phone in morning",
+        icon:"📵",
+        xp:10
+    },
+
+    {
+        name:"Complete priority goal",
+        icon:"🎯",
+        xp:15
+    }
+
+];
+
+
+/* =====================================================
+   JOURNEY
+===================================================== */
+
+const journey = [
+
+"The Dream Begins 🌱",
+"First Steps 🚶",
+"Momentum Rising ⚡",
+"Getting Stronger 💪",
+"Finding Your Rhythm 🎵",
+"Growing Every Day 🌱",
+"Building Power 🔥",
+"Climbing Higher 🏔️",
+"Halfway to the Stars 🌟",
+"Dreams Getting Closer 🚀",
+"You're Becoming Unstoppable ⚡",
+"Discipline Is Growing 🌳",
+"Keep Your Eyes on the Dream 👀",
+"Almost There 🌠",
+"You've Come So Far 💜",
+"The Stars Are Calling ✨",
+"Final Stretch 🏃",
+"Don't Look Back 🔥",
+"Your Story Is Amazing 📖",
+"One Last Push 🚀",
+"YOU ARE THE LEGEND 🏆"
+
+];
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+const badges = [
+
+    {
+        icon:"🌱",
+        name:"First Step",
+        days:1
+    },
+
+    {
+        icon:"🔥",
+        name:"3 Day Fire",
+        days:3
+    },
+
+    {
+        icon:"⚡",
+        name:"7 Day Power",
+        days:7
+    },
+
+    {
+        icon:"🌟",
+        name:"10 Day Star",
+        days:10
+    },
+
+    {
+        icon:"👑",
+        name:"14 Day Royal",
+        days:14
+    },
+
+    {
+        icon:"🚀",
+        name:"18 Day Rocket",
+        days:18
+    },
+
+    {
+        icon:"🏆",
+        name:"21 Day Legend",
+        days:21
+    },
+
+    {
+        icon:"💎",
+        name:"XP Master",
+        days:0
+    }
+
+];
+
+
+/* =====================================================
+   REWARDS
+===================================================== */
+
+const rewards = [
+
+    {
+        icon:"🎬",
+        name:"Movie Time",
+        text:"Watch one movie guilt-free.",
+        cost:100
+    },
+
+    {
+        icon:"🍕",
+        name:"Favorite Food",
+        text:"Enjoy something you really like.",
+        cost:150
+    },
+
+    {
+        icon:"🎮",
+        name:"Gaming Time",
+        text:"Play without feeling guilty.",
+        cost:200
+    },
+
+    {
+        icon:"☕",
+        name:"Relax Time",
+        text:"Take a peaceful break.",
+        cost:250
+    },
+
+    {
+        icon:"🛍️",
+        name:"Small Gift",
+        text:"Buy something you've wanted.",
+        cost:500
+    },
+
+    {
+        icon:"🌴",
+        name:"Adventure",
+        text:"Plan a fun outing.",
+        cost:800
+    }
+
+];
+
+
+/* =====================================================
+   DATA
+===================================================== */
+
+let data =
+JSON.parse(
+    localStorage.getItem(
+        "dreamUniverse21"
+    )
+) || {
+
+    xp:0,
+
+    currentDay:1,
+
+    days:{},
+
+    badges:[],
+
+    rewards:[],
+
+    effects:true,
+
+    auto:true,
+
+    customHabits:[]
+
+};
+
+
+/* =====================================================
+   BACKWARD COMPATIBILITY
+===================================================== */
+
+if(!data.customHabits){
+
+    data.customHabits=[];
+
+}
+
+
+/* =====================================================
+   GET ALL HABITS
+===================================================== */
+
+function getHabits(){
+
+    return [
+        ...defaultHabits,
+        ...data.customHabits
+    ];
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function save(){
+
+    localStorage.setItem(
+        "dreamUniverse21",
+        JSON.stringify(data)
+    );
+
+}
+
+
+/* =====================================================
+   GET DAY
+===================================================== */
+
+function completed(day){
+
+    return data.days[day] || [];
+
+}
+
+
+/* =====================================================
+   DAY COMPLETE
+===================================================== */
+
+function dayComplete(day){
+
+    return completed(day).length === getHabits().length;
+
+}
+
+
+/* =====================================================
+   DAY MAP
+===================================================== */
+
+function renderDays(){
+
+    const box =
+    document.getElementById("days");
+
+    box.innerHTML="";
+
+
+    for(
+        let day=1;
+        day<=21;
+        day++
+    ){
+
+        const button =
+        document.createElement("button");
+
+        button.className="day";
+
+
+        if(
+            day===data.currentDay
+        ){
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+
+
+        if(
+            dayComplete(day)
+        ){
+
+            button.classList.add(
+                "done"
+            );
+
+        }
+
+
+        button.innerHTML=`
+
+            <b>${day}</b>
+
+            <small>
+
+                ${
+                    dayComplete(day)
+                    ? "✓ DONE"
+                    : "PLANET"
+                }
+
+            </small>
+
+        `;
+
+
+        button.onclick=()=>{
+
+            data.currentDay=day;
+
+            save();
+
+            render();
+
+        };
+
+
+        box.appendChild(button);
+
+    }
+
+}
+
+
+/* =====================================================
+   HABITS
+===================================================== */
+
+function renderHabits(){
+
+    const box =
+    document.getElementById(
+        "habitList"
+    );
+
+    box.innerHTML="";
+
+
+    const done =
+    completed(data.currentDay);
+
+    const habits =
+    getHabits();
+
+
+    habits.forEach(
+        (habit,index)=>{
+
+            const isDone =
+            done.includes(index);
+
+
+            const div =
+            document.createElement(
+                "div"
+            );
+
+            div.className="habit";
+
+
+            if(isDone){
+
+                div.classList.add(
+                    "done"
+                );
+
+            }
+
+
+            div.innerHTML=`
+
+                <div class="habit-icon">
+
+                    ${habit.icon}
+
+                </div>
+
+
+                <div class="habit-info">
+
+                    <b>
+                        ${habit.name}
+                    </b>
+
+                    <small>
+
+                        ${
+                            isDone
+                            ? "Mission complete 🔥"
+                            : "Tap when completed"
+                        }
+
+                    </small>
+
+                </div>
+
+
+                <div class="habit-xp">
+
+                    +${habit.xp} XP
+
+                </div>
+
+
+                <button class="check">
+
+                    ${
+                        isDone
+                        ? "✓"
+                        : ""
+                    }
+
+                </button>
+
+            `;
+
+
+            div
+            .querySelector(".check")
+            .onclick=()=>{
+
+                toggleHabit(index);
+
+            };
+
+
+            box.appendChild(div);
+
+        }
+    );
+
+
+    document.getElementById(
+        "completedText"
+    ).textContent=
+
+    `${done.length}/${habits.length}`;
+
+
+    updateMessage(
+        done.length
+    );
+
+}
+
+
+/* =====================================================
+   TOGGLE
+===================================================== */
+
+function toggleHabit(index){
+
+    if(
+        !data.days[data.currentDay]
+    ){
+
+        data.days[data.currentDay]=[];
+
+    }
+
+
+    const list =
+    data.days[data.currentDay];
+
+
+    const position =
+    list.indexOf(index);
+
+    const habits =
+    getHabits();
+
+
+    /* UNDO */
+
+    if(position!==-1){
+
+        list.splice(
+            position,
+            1
+        );
+
+        data.xp -=
+        habits[index].xp;
+
+        save();
+
+        render();
+
+        return;
+
+    }
+
+
+    /* COMPLETE */
+
+    list.push(index);
+
+    data.xp +=
+    habits[index].xp;
+
+
+    save();
+
+    render();
+
+    celebrate(
+        "MISSION COMPLETE!",
+        habits[index].name,
+        habits[index].xp,
+        habits[index].icon
+    );
+
+
+    if(
+        list.length===
+        habits.length
+    ){
+
+        setTimeout(
+            finishDay,
+            800
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   FINISH DAY
+===================================================== */
+
+function finishDay(){
+
+    const key =
+    data.currentDay+
+    "_bonus";
+
+
+    if(data.days[key]){
+
+        return;
+
+    }
+
+
+    data.days[key]=true;
+
+    data.xp+=50;
+
+    save();
+
+
+    setTimeout(
+        ()=>{
+
+            celebrate(
+                "PLANET UNLOCKED! 🪐",
+                "You completed today's entire mission!",
+                50,
+                "🚀"
+            );
+
+            checkBadges();
+
+        },
+        700
+    );
+
+
+    if(
+        data.auto &&
+        data.currentDay<21
+    ){
+
+        setTimeout(
+            ()=>{
+
+                data.currentDay++;
+
+                save();
+
+                render();
+
+            },
+            1800
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function updateMessage(count){
+
+    const message =
+    document.getElementById(
+        "dailyMessage"
+    );
+
+
+    const total =
+    getHabits().length;
+
+
+    if(count===0){
+
+        message.textContent =
+        "Your future is waiting for you. 🌌";
+
+    }
+
+    else if(
+        count<Math.ceil(total/2)
+    ){
+
+        message.textContent =
+        "You started. That's already a victory. 🌱";
+
+    }
+
+    else if(
+        count<total
+    ){
+
+        message.textContent =
+        "You're getting closer. Don't stop now! 🔥";
+
+    }
+
+    else{
+
+        message.textContent =
+        "TODAY'S MISSION COMPLETE! YOU DID IT! 🏆";
+
+    }
+
+}
+
+
+/* =====================================================
+   STREAK
+===================================================== */
+
+function currentStreak(){
+
+    let streak=0;
+
+
+    for(
+        let d=data.currentDay;
+        d>=1;
+        d--
+    ){
+
+        if(dayComplete(d)){
+
+            streak++;
+
+        }
+        else{
+
+            break;
+
+        }
+
+    }
+
+
+    return streak;
+
+}
+
+
+function bestStreak(){
+
+    let best=0;
+
+    let current=0;
+
+
+    for(
+        let d=1;
+        d<=21;
+        d++
+    ){
+
+        if(dayComplete(d)){
+
+            current++;
+
+            best=
+            Math.max(
+                best,
+                current
+            );
+
+        }
+        else{
+
+            current=0;
+
+        }
+
+    }
+
+
+    return best;
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function updateStats(){
+
+    let days=0;
+
+
+    for(
+        let d=1;
+        d<=21;
+        d++
+    ){
+
+        if(dayComplete(d)){
+
+            days++;
+
+        }
+
+    }
+
+
+    document.getElementById(
+        "currentStreak"
+    ).textContent=
+    currentStreak();
+
+
+    document.getElementById(
+        "bestStreak"
+    ).textContent=
+    bestStreak();
+
+
+    document.getElementById(
+        "daysCompleted"
+    ).textContent=
+    days;
+
+
+    document.getElementById(
+        "badgeNumber"
+    ).textContent=
+    data.badges.length;
+
+}
+
+
+/* =====================================================
+   GRAPH
+===================================================== */
+
+function renderGraph(){
+
+    const box =
+    document.getElementById(
+        "graph"
+    );
+
+    box.innerHTML="";
+
+
+    const totalHabits =
+    getHabits().length;
+
+
+    for(
+        let d=1;
+        d<=21;
+        d++
+    ){
+
+        const count =
+        completed(d).length;
+
+
+        const percent =
+        totalHabits > 0
+        ? count/totalHabits*100
+        : 0;
+
+
+        const wrapper =
+        document.createElement(
+            "div"
+        );
+
+        wrapper.className=
+        "graph-day";
+
+
+        const bar =
+        document.createElement(
+            "div"
+        );
+
+        bar.className="graph-bar";
+
+
+        if(
+            d===data.currentDay
+        ){
+
+            bar.classList.add(
+                "today"
+            );
+
+        }
+
+
+        bar.style.height=
+        Math.max(
+            percent,
+            3
+        )+"%";
+
+
+        const label =
+        document.createElement(
+            "small"
+        );
+
+        label.textContent=d;
+
+
+        wrapper.appendChild(bar);
+
+        wrapper.appendChild(label);
+
+        box.appendChild(wrapper);
+
+    }
+
+}
+
+
+/* =====================================================
+   OVERALL
+===================================================== */
+
+function updateOverall(){
+
+    let total=0;
+
+
+    for(
+        let d=1;
+        d<=21;
+        d++
+    ){
+
+        total+=
+        completed(d).length;
+
+    }
+
+
+    const max=
+    21*getHabits().length;
+
+
+    const percent=
+    max>0
+    ? Math.round(
+        total/max*100
+    )
+    : 0;
+
+
+    document.getElementById(
+        "overallPercent"
+    ).textContent=
+    percent+"%";
+
+
+    document.getElementById(
+        "overallBar"
+    ).style.width=
+    percent+"%";
+
+
+    document.getElementById(
+        "dayNumber"
+    ).textContent=
+    "DAY "+data.currentDay;
+
+
+    updatePlanet(percent);
+
+}
+
+
+/* =====================================================
+   PLANET
+===================================================== */
+
+function updatePlanet(percent){
+
+    const planet =
+    document.getElementById(
+        "planet"
+    );
+
+
+    const title =
+    document.getElementById(
+        "journeyTitle"
+    );
+
+
+    const message =
+    document.getElementById(
+        "journeyMessage"
+    );
+
+
+    if(percent===0){
+
+        planet.textContent="🌱";
+
+    }
+    else if(percent<20){
+
+        planet.textContent="🌿";
+
+    }
+    else if(percent<40){
+
+        planet.textContent="🌳";
+
+    }
+    else if(percent<60){
+
+        planet.textContent="🌸";
+
+    }
+    else if(percent<80){
+
+        planet.textContent="🌎";
+
+    }
+    else if(percent<100){
+
+        planet.textContent="🌍";
+
+    }
+    else{
+
+        planet.textContent="🌟";
+
+    }
+
+
+    title.textContent=
+    journey[
+        data.currentDay-1
+    ];
+
+
+    message.textContent=
+    "Day "+
+    data.currentDay+
+    " of your dream journey.";
+
+}
+
+
+/* =====================================================
+   LEVEL
+===================================================== */
+
+function updateLevel(){
+
+    const level=
+    Math.floor(
+        data.xp/100
+    )+1;
+
+
+    const xp=
+    data.xp%100;
+
+
+    document.getElementById(
+        "xp"
+    ).textContent=
+    data.xp;
+
+
+    document.getElementById(
+        "level"
+    ).textContent=
+    level;
+
+
+    document.getElementById(
+        "level2"
+    ).textContent=
+    level;
+
+
+    document.getElementById(
+        "levelXP"
+    ).textContent=
+    xp;
+
+
+    document.getElementById(
+        "levelProgress"
+    ).style.width=
+    xp+"%";
+
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+function checkBadges(){
+
+    const streak=
+    bestStreak();
+
+
+    badges.forEach(
+        (badge,index)=>{
+
+            let unlock=false;
+
+
+            if(
+                badge.days===0
+            ){
+
+                unlock=
+                data.xp>=1000;
+
+            }
+            else{
+
+                unlock=
+                streak>=badge.days;
+
+            }
+
+
+            if(
+                unlock &&
+                !data.badges.includes(index)
+            ){
+
+                data.badges.push(index);
+
+                data.xp+=25;
+
+                save();
+
+
+                setTimeout(
+                    ()=>{
+
+                        celebrate(
+                            "BADGE UNLOCKED!",
+                            badge.name,
+                            25,
+                            badge.icon
+                        );
+
+                        render();
+
+                    },
+                    900
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   BADGE RENDER
+===================================================== */
+
+function renderBadges(){
+
+    const box=
+    document.getElementById(
+        "badges"
+    );
+
+    box.innerHTML="";
+
+
+    badges.forEach(
+        (badge,index)=>{
+
+            const unlocked=
+            data.badges.includes(
+                index
+            );
+
+
+            const div=
+            document.createElement(
+                "div"
+            );
+
+            div.className="badge";
+
+
+            if(unlocked){
+
+                div.classList.add(
+                    "unlocked"
+                );
+
+            }
+
+
+            div.innerHTML=`
+
+                <div class="badge-icon">
+
+                    ${badge.icon}
+
+                </div>
+
+                <b>
+
+                    ${badge.name}
+
+                </b>
+
+                <small>
+
+                    ${
+                        unlocked
+                        ? "UNLOCKED"
+                        : badge.days===0
+                        ? "1000 XP"
+                        : badge.days+" DAYS"
+                    }
+
+                </small>
+
+            `;
+
+
+            box.appendChild(div);
+
+        }
+    );
+
+
+    document.getElementById(
+        "badgeCount"
+    ).textContent=
+    data.badges.length+
+    "/"+
+    badges.length;
+
+}
+
+
+/* =====================================================
+   REWARDS
+===================================================== */
+
+function renderRewards(){
+
+    const box=
+    document.getElementById(
+        "rewards"
+    );
+
+    box.innerHTML="";
+
+
+    rewards.forEach(
+        (reward,index)=>{
+
+            const used=
+            data.rewards.includes(
+                index
+            );
+
+
+            const canBuy=
+            data.xp>=reward.cost &&
+            !used;
+
+
+            const div=
+            document.createElement(
+                "div"
+            );
+
+            div.className="reward";
+
+
+            div.innerHTML=`
+
+                <div class="reward-icon">
+
+                    ${reward.icon}
+
+                </div>
+
+                <h3>
+
+                    ${reward.name}
+
+                </h3>
+
+                <p>
+
+                    ${reward.text}
+
+                </p>
+
+                <button
+
+                    ${
+                        canBuy
+                        ? ""
+                        : "disabled"
+                    }
+
+                    onclick=
+                    "buyReward(${index})"
+
+                >
+
+                    ${
+                        used
+                        ? "CLAIMED ✓"
+                        : "⭐ "+reward.cost+" XP"
+                    }
+
+                </button>
+
+            `;
+
+
+            box.appendChild(div);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   BUY REWARD
+===================================================== */
+
+function buyReward(index){
+
+    const reward=
+    rewards[index];
+
+
+    if(
+        data.rewards.includes(index)
+    ){
+
+        return;
+
+    }
+
+
+    if(
+        data.xp<reward.cost
+    ){
+
+        celebrate(
+            "KEEP GOING! 🌱",
+            "You need more XP for this reward.",
+            0,
+            "💎"
+        );
+
+        return;
+
+    }
+
+
+    data.xp-=
+    reward.cost;
+
+
+    data.rewards.push(index);
+
+
+    save();
+
+
+    celebrate(
+        "REWARD UNLOCKED! 🎁",
+        "You earned your "+reward.name+"!",
+        reward.cost,
+        reward.icon
+    );
+
+
+    render();
+
+}
+
+
+/* =====================================================
+   ADD MISSION
+===================================================== */
+
+function openAddMission(){
+
+    document.getElementById(
+        "addMissionBg"
+    ).classList.add(
+        "show"
+    );
+
+
+    document.getElementById(
+        "missionName"
+    ).value="";
+
+
+    document.getElementById(
+        "missionEmoji"
+    ).value="🎯";
+
+
+    document.getElementById(
+        "missionXP"
+    ).value="10";
+
+
+    setTimeout(
+        ()=>{
+            document.getElementById(
+                "missionName"
+            ).focus();
+        },
+        100
+    );
+
+}
+
+
+function closeAddMission(){
+
+    document.getElementById(
+        "addMissionBg"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+function addMission(){
+
+    const name=
+    document.getElementById(
+        "missionName"
+    ).value.trim();
+
+
+    const emoji=
+    document.getElementById(
+        "missionEmoji"
+    ).value.trim() ||
+    "🎯";
+
+
+    const xp=
+    Number(
+        document.getElementById(
+            "missionXP"
+        ).value
+    );
+
+
+    if(!name){
+
+        alert(
+            "Please enter a mission name."
+        );
+
+        return;
+
+    }
+
+
+    if(!xp || xp<1){
+
+        alert(
+            "Please enter valid XP."
+        );
+
+        return;
+
+    }
+
+
+    data.customHabits.push({
+
+        name:name,
+
+        icon:emoji,
+
+        xp:xp
+
+    });
+
+
+    save();
+
+    closeAddMission();
+
+    render();
+
+
+    celebrate(
+        "NEW MISSION ADDED! 🚀",
+        name,
+        0,
+        emoji
+    );
+
+}
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+function celebrate(
+    title,
+    message,
+    xp,
+    emoji
+){
+
+    document.getElementById(
+        "popupTitle"
+    ).textContent=
+    title;
+
+
+    document.getElementById(
+        "popupMessage"
+    ).textContent=
+    message;
+
+
+    document.getElementById(
+        "earnedXP"
+    ).textContent=
+    xp;
+
+
+    document.getElementById(
+        "popupEmoji"
+    ).textContent=
+    emoji;
+
+
+    document.getElementById(
+        "popup"
+    ).classList.add(
+        "show"
+    );
+
+
+    particles();
+
+}
+
+
+function closePopup(){
+
+    document.getElementById(
+        "popup"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+function particles(){
+
+    if(!data.effects){
+
+        return;
+
+    }
+
+
+    const symbols=[
+        "✨",
+        "⭐",
+        "💫",
+        "🌟",
+        "🚀",
+        "💜"
+    ];
+
+
+    for(
+        let i=0;
+        i<20;
+        i++
+    ){
+
+        const p=
+        document.createElement(
+            "div"
+        );
+
+
+        p.textContent=
+        symbols[
+            Math.floor(
+                Math.random()*
+                symbols.length
+            )
+        ];
+
+
+        p.style.position=
+        "fixed";
+
+
+        p.style.left=
+        Math.random()*100+
+        "%";
+
+
+        p.style.top=
+        50+
+        Math.random()*30+
+        "%";
+
+
+        p.style.fontSize=
+        "20px";
+
+
+        p.style.zIndex=
+        "300";
+
+
+        p.style.transition=
+        "all 2s";
+
+
+        document.body.appendChild(p);
+
+
+        setTimeout(
+            ()=>{
+
+                p.style.transform=
+                "translateY(-180px)";
+
+                p.style.opacity="0";
+
+            },
+            50
+        );
+
+
+        setTimeout(
+            ()=>p.remove(),
+            2200
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function openSettings(){
+
+    document.getElementById(
+        "settingsBg"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeSettings(){
+
+    document.getElementById(
+        "settingsBg"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+/* effects */
+
+function toggleEffects(){
+
+    data.effects=
+    !data.effects;
+
+
+    document.getElementById(
+        "effectsToggle"
+    ).classList.toggle(
+        "on",
+        data.effects
+    );
+
+
+    document.querySelector(
+        ".stars"
+    ).style.display=
+    data.effects
+    ? "block"
+    : "none";
+
+
+    document.querySelector(
+        ".stars2"
+    ).style.display=
+    data.effects
+    ? "block"
+    : "none";
+
+
+    document.querySelector(
+        ".stars3"
+    ).style.display=
+    data.effects
+    ? "block"
+    : "none";
+
+
+    save();
+
+}
+
+
+/* auto */
+
+function toggleAuto(){
+
+    data.auto=
+    !data.auto;
+
+
+    document.getElementById(
+        "autoToggle"
+    ).classList.toggle(
+        "on",
+        data.auto
+    );
+
+
+    save();
+
+}
+
+
+/* =====================================================
+   THEMES
+===================================================== */
+
+function theme(type){
+
+    const space=
+    document.querySelector(
+        ".space"
+    );
+
+
+    if(type==="purple"){
+
+        space.style.background=
+        "radial-gradient(circle at 15% 20%,rgba(118,52,255,.3),transparent 25%),radial-gradient(circle at 85% 25%,rgba(0,166,255,.18),transparent 25%),#03020d";
+
+    }
+
+
+    if(type==="blue"){
+
+        space.style.background=
+        "radial-gradient(circle at 15% 20%,rgba(0,130,255,.3),transparent 25%),radial-gradient(circle at 85% 25%,rgba(0,220,255,.2),transparent 25%),#020914";
+
+    }
+
+
+    if(type==="pink"){
+
+        space.style.background=
+        "radial-gradient(circle at 15% 20%,rgba(255,50,180,.3),transparent 25%),radial-gradient(circle at 85% 25%,rgba(160,50,255,.2),transparent 25%),#10030e";
+
+    }
+
+
+    if(type==="green"){
+
+        space.style.background=
+        "radial-gradient(circle at 15% 20%,rgba(0,255,150,.2),transparent 25%),radial-gradient(circle at 85% 25%,rgba(0,120,255,.2),transparent 25%),#020d0b";
+
+    }
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetAll(){
+
+    const answer=
+    confirm(
+        "⚠️ This will erase your entire 21-day journey. Continue?"
+    );
+
+
+    if(!answer){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "dreamUniverse21"
+    );
+
+
+    location.reload();
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function render(){
+
+    renderDays();
+
+    renderHabits();
+
+    updateStats();
+
+    updateLevel();
+
+    renderGraph();
+
+    updateOverall();
+
+    renderBadges();
+
+    renderRewards();
+
+
+    /* Restore settings toggles */
+
+    document.getElementById(
+        "effectsToggle"
+    ).classList.toggle(
+        "on",
+        data.effects
+    );
+
+
+    document.getElementById(
+        "autoToggle"
+    ).classList.toggle(
+        "on",
+        data.auto
+    );
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+render();
+
+</script>
+
+
+<!-- =====================================================
+     PWA SERVICE WORKER
+===================================================== -->
+
+<script>
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", function(){
+
+        navigator.serviceWorker.register(
+            "service-worker.js"
+        ).then(function(){
+
+            console.log(
+                "Dream Universe app is ready 🚀"
+            );
+
+        }).catch(function(error){
+
+            console.log(
+                "Service Worker error:",
+                error
+            );
+
+        });
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
