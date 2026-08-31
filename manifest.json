@@ -1,7 +1,7 @@
 {
-  "name": "Dream Universe 🚀",
-  "short_name": "Dream Universe",
-  "description": "My 21 Day Dream Universe Habit Tracker",
+  "name": "Bharat Patil",
+  "short_name": "Tracker",
+  "description": "My 21 Day Habit Tracker",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#03020d",
