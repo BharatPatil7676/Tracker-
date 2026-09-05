@@ -1,2007 +1,1052 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Bharat Patil</title>
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#03020d">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bharat Patil— Habit Tracker</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*{
+  box-sizing:border-box;
+}
+
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:#03020d;color:white;min-height:100vh;overflow-x:hidden
+  margin:0;
+  background:#08070c;
+  color:#eee;
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
 }
 
-.space{
-position:fixed;inset:0;
-background:
-radial-gradient(circle at 15% 20%,rgba(118,52,255,.25),transparent 25%),
-radial-gradient(circle at 85% 25%,rgba(0,166,255,.18),transparent 25%),
-radial-gradient(circle at 50% 90%,rgba(255,0,153,.16),transparent 30%),
-#03020d;
-z-index:-10
+.page{
+  max-width:1200px;
+  margin:auto;
+  padding:28px;
 }
 
-.stars,.stars2,.stars3{
-position:fixed;inset:-50%;pointer-events:none;
-background-image:
-radial-gradient(circle,rgba(255,255,255,.9) 1px,transparent 1.5px),
-radial-gradient(circle,rgba(130,200,255,.7) 1px,transparent 1.5px),
-radial-gradient(circle,rgba(255,150,230,.8) 1px,transparent 1.5px);
-background-size:75px 75px,120px 120px,170px 170px;
-animation:starMove 50s linear infinite;
-opacity:.6;z-index:-9
-}
-.stars2{transform:scale(1.4);animation-duration:90s;opacity:.35}
-.stars3{transform:scale(1.8);animation-duration:140s;opacity:.2}
+/* HEADER */
 
-@keyframes starMove{
-from{transform:translateY(0)}
-to{transform:translateY(250px)}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:24px;
 }
 
-.shooting{
-position:fixed;width:120px;height:2px;
-background:linear-gradient(90deg,transparent,white);
-transform:rotate(-35deg);opacity:0;z-index:-5;
-animation:shoot 6s linear infinite
-}
-.shooting:nth-child(2){top:20%;left:80%;animation-delay:2s}
-.shooting:nth-child(3){top:60%;left:10%;animation-delay:4s}
-@keyframes shoot{
-0%{transform:translate(0,0) rotate(-35deg);opacity:0}
-10%{opacity:1}
-30%{transform:translate(-350px,250px) rotate(-35deg);opacity:0}
-100%{opacity:0}
+h1{
+  font-size:34px;
+  margin:0 0 5px;
 }
 
-.app{width:100%;max-width:650px;margin:auto;padding:20px 14px 80px}
+.sub{
+  color:#9995a2;
+}
 
-.top{
-display:flex;justify-content:space-between;align-items:center;margin-bottom:20px
+.controls{
+  display:flex;
+  gap:8px;
 }
-.logo small{color:#9288b7;font-size:8px;letter-spacing:2px}
-.logo h1{font-size:30px;margin-top:4px}
-.logo h1 span{
-background:linear-gradient(90deg,#ff55ad,#8b6cff,#42dfff);
-background-clip:text;-webkit-background-clip:text;
-color:transparent;-webkit-text-fill-color:transparent
-}
-.logo p{color:#77718d;font-size:9px;margin-top:4px}
 
-.settings-btn{
-width:45px;height:45px;border-radius:50%;
-border:1px solid rgba(255,255,255,.15);
-background:rgba(255,255,255,.07);color:white;
-font-size:20px;cursor:pointer;backdrop-filter:blur(15px);
-transition:.3s
+button{
+  border:1px solid #403a4d;
+  background:#18151f;
+  color:#fff;
+  border-radius:7px;
+  padding:10px 14px;
+  cursor:pointer;
 }
-.settings-btn:hover{transform:rotate(90deg)}
 
-.xp{
-display:flex;align-items:center;justify-content:space-between;
-background:linear-gradient(135deg,rgba(255,196,62,.12),rgba(255,91,174,.08));
-border:1px solid rgba(255,255,255,.1);
-padding:13px 16px;border-radius:20px;margin-bottom:15px;
-backdrop-filter:blur(15px)
+button:hover{
+  background:#24202d;
 }
-.xp-left{display:flex;align-items:center;gap:10px}
-.xp-star{font-size:28px;animation:starPulse 2s infinite}
-@keyframes starPulse{50%{transform:scale(1.15)}}
-.xp-number{font-size:21px;font-weight:bold;color:#ffd34e}
-.xp-label{display:block;font-size:7px;color:#81798f;letter-spacing:1px}
-.level{text-align:right;color:#aaa2ba;font-size:8px}
-.level b{display:block;color:white;font-size:16px}
 
-.hero{
-position:relative;min-height:390px;border-radius:35px;overflow:hidden;
-margin-bottom:15px;border:1px solid rgba(255,255,255,.12);
-background:
-radial-gradient(circle at 50% 35%,rgba(126,81,255,.28),transparent 30%),
-radial-gradient(circle at 20% 80%,rgba(255,66,180,.14),transparent 25%),
-#0a0820;
-box-shadow:0 30px 80px rgba(0,0,0,.5)
+.primary{
+  background:#7049e5;
+  border-color:#8b68ee;
 }
-.moon{
-position:absolute;top:25px;right:30px;font-size:30px;
-animation:moonFloat 5s ease-in-out infinite
-}
-@keyframes moonFloat{50%{transform:translateY(-8px)}}
 
-.planet{
-position:absolute;top:60px;left:50%;transform:translateX(-50%);
-width:145px;height:145px;border-radius:50%;
-display:flex;align-items:center;justify-content:center;font-size:65px;
-background:radial-gradient(circle at 30% 25%,white,#ffacd9 8%,#8c5cff 42%,#24154d 75%);
-box-shadow:0 0 35px rgba(145,90,255,.8),0 0 100px rgba(100,70,255,.35);
-animation:planetFloat 4s ease-in-out infinite;z-index:3
-}
-@keyframes planetFloat{
-50%{transform:translateX(-50%) translateY(-10px)}
-}
-.ring{
-position:absolute;top:105px;left:50%;transform:translateX(-50%) rotate(-12deg);
-width:220px;height:60px;border:3px solid rgba(255,210,248,.65);
-border-radius:50%;z-index:4
-}
-.orbit{
-position:absolute;top:35px;left:50%;transform:translateX(-50%);
-width:250px;height:250px;border:1px dashed rgba(255,255,255,.12);
-border-radius:50%;animation:orbit 18s linear infinite
-}
-.orbit::after{content:"⭐";position:absolute;top:-12px;left:50%}
-@keyframes orbit{
-to{transform:translateX(-50%) rotate(360deg)}
-}
-.ship{
-position:absolute;top:145px;left:30px;font-size:34px;
-animation:shipFly 7s ease-in-out infinite
-}
-@keyframes shipFly{
-0%,100%{transform:translate(0,0) rotate(-10deg)}
-50%{transform:translate(280px,-50px) rotate(10deg)}
-}
-.hero-text{
-position:absolute;left:20px;right:20px;bottom:22px;text-align:center
-}
-.hero-text small{color:#9288b7;font-size:8px;letter-spacing:2px}
-.hero-text h2{font-size:23px;margin:5px 0}
-.hero-text p{color:#928ba5;font-size:10px}
-.big-progress{margin-top:15px}
-.big-progress-top{
-display:flex;justify-content:space-between;font-size:9px;
-color:#aaa1b7;margin-bottom:6px
-}
-.big-progress-top b{color:#ff75bc}
-
-.progress{
-height:9px;background:rgba(255,255,255,.08);
-border-radius:20px;overflow:hidden
-}
-.progress div{
-height:100%;width:0%;
-background:linear-gradient(90deg,#ff4eaa,#8265ff,#4edcff);
-border-radius:20px;transition:width .7s
-}
+/* STATISTICS */
 
 .stats{
-display:grid;grid-template-columns:repeat(4,1fr);
-gap:7px;margin-bottom:15px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-bottom:20px;
 }
+
 .stat{
-text-align:center;padding:13px 3px;border-radius:19px;
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.08);
-backdrop-filter:blur(15px)
+  background:#15131b;
+  border:1px solid #332e3c;
+  border-radius:9px;
+  padding:16px;
 }
-.stat span{display:block;font-size:20px}
-.stat b{display:block;font-size:18px;margin-top:3px}
-.stat small{
-display:block;color:#716a81;font-size:6px;
-margin-top:3px;letter-spacing:1px
+
+.label{
+  color:#aaa5b2;
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.value{
+  font-size:24px;
+  font-weight:bold;
+}
+
+.bar{
+  height:14px;
+  border:2px solid #d06c5e;
+  padding:2px;
+}
+
+.bar i{
+  display:block;
+  height:100%;
+  width:0;
+  background:#d87562;
+  transition:.3s;
+}
+
+/* HABIT TABLE */
+
+.sheet{
+  overflow:auto;
+  background:#0f0e14;
+  border:1px solid #342f3d;
+  border-radius:9px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:190px repeat(28,36px);
+  min-width:1200px;
+}
+
+.cell{
+  height:43px;
+  border-right:1px solid #302c39;
+  border-bottom:1px solid #302c39;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+}
+
+.name{
+  justify-content:flex-start;
+  padding:0 12px;
+  font-weight:bold;
+  background:#121017;
+  position:sticky;
+  left:0;
+  z-index:2;
+}
+
+.month{
+  font-size:20px;
+  font-weight:bold;
+  justify-content:flex-start;
+  padding-left:14px;
+  background:#17141d;
+}
+
+/* WEEK COLORS */
+
+.w1{
+  background:#39258b;
+}
+
+.w2{
+  background:#3d7893;
+}
+
+.w3{
+  background:#62a5a7;
+}
+
+.w4{
+  background:#a83e76;
+}
+
+/* CHECKBOX */
+
+.check{
+  width:21px;
+  height:21px;
+  padding:0;
+  border:2px solid #666073;
+  border-radius:4px;
+  background:#15131b;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:#fff;
+  font-size:14px;
+}
+
+.check:hover{
+  background:#292431;
+}
+
+.check.done{
+  background:#7952df;
+  border-color:#a181f2;
+}
+
+/* LEGEND */
+
+.legend{
+  padding:14px;
+  display:flex;
+  gap:18px;
+  color:#aaa5b2;
+  font-size:12px;
+}
+
+.legend span{
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+
+.dot{
+  width:13px;
+  height:13px;
+  border-radius:3px;
+}
+
+/* BOTTOM CARDS */
+
+.bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:18px;
 }
 
 .card{
-background:rgba(255,255,255,.055);
-border:1px solid rgba(255,255,255,.1);
-border-radius:27px;padding:18px;margin-bottom:15px;
-backdrop-filter:blur(18px);
-box-shadow:0 15px 40px rgba(0,0,0,.18)
-}
-.title{
-display:flex;justify-content:space-between;align-items:center;margin-bottom:15px
-}
-.title small{color:#817991;font-size:7px;letter-spacing:1.5px}
-.title h2{font-size:17px;margin-top:4px}
-.title strong{color:#ff70b8;font-size:10px}
-
-.days{
-display:flex;gap:8px;overflow-x:auto;padding:4px 2px 7px
-}
-.days::-webkit-scrollbar{display:none}
-.day{
-flex-shrink:0;width:52px;height:64px;border-radius:17px;
-border:1px solid rgba(255,255,255,.1);
-background:rgba(255,255,255,.055);
-color:#777184;cursor:pointer;transition:.25s
-}
-.day b{display:block;color:white;font-size:17px}
-.day small{font-size:6px;display:block;margin-top:5px}
-.day.active{
-background:linear-gradient(145deg,#ff54ac,#735cff);
-color:white;transform:translateY(-5px);
-box-shadow:0 10px 25px rgba(180,70,240,.35)
-}
-.day.done{border-color:#4ee6a3}
-.day.done small{color:#55e8ad}
-
-.habit{
-display:flex;align-items:center;gap:9px;padding:12px;
-border-radius:18px;margin-bottom:8px;
-background:rgba(255,255,255,.045);
-border:1px solid rgba(255,255,255,.06);transition:.25s
-}
-.habit.done{
-background:rgba(65,225,155,.09);
-border-color:rgba(65,225,155,.2)
-}
-.habit-icon{
-width:42px;height:42px;display:flex;align-items:center;
-justify-content:center;border-radius:14px;
-background:rgba(255,255,255,.07);font-size:21px
-}
-.habit-info{flex:1;min-width:0}
-.habit-info b{display:block;font-size:11px}
-.habit-info small{
-color:#777184;font-size:7px;display:block;margin-top:3px
-}
-.habit.done .habit-info b{
-color:#65dca6;text-decoration:line-through
-}
-.habit-xp{color:#ffd34e;font-size:8px;font-weight:bold;white-space:nowrap}
-
-.check{
-width:32px;height:32px;border-radius:50%;
-border:2px solid #514b61;background:transparent;color:white;
-cursor:pointer;font-size:15px;flex-shrink:0
-}
-.habit.done .check{
-background:linear-gradient(135deg,#4ee4a4,#45cfff);
-border:none;box-shadow:0 0 15px rgba(70,230,170,.4)
+  background:#15131b;
+  border:1px solid #332e3c;
+  border-radius:9px;
+  padding:18px;
 }
 
-/* CUSTOM MISSION CONTROLS */
-.mission-controls{
-display:flex;gap:5px;margin-left:2px
-}
-.mission-edit,.mission-delete{
-width:27px;height:27px;border-radius:9px;
-border:1px solid rgba(255,255,255,.1);
-background:rgba(255,255,255,.06);
-color:white;cursor:pointer;font-size:11px
-}
-.mission-edit:hover{
-background:rgba(80,150,255,.2);border-color:#548cff
-}
-.mission-delete:hover{
-background:rgba(255,60,100,.2);border-color:#ff5577
+.card h2{
+  margin:0 0 15px;
 }
 
-.add-mission-btn{
-width:100%;border:1px dashed rgba(255,255,255,.18);
-background:rgba(255,255,255,.035);color:#ff70b8;
-border-radius:17px;padding:12px;margin-top:5px;
-font-size:9px;font-weight:bold;cursor:pointer;transition:.25s
-}
-.add-mission-btn:hover{
-background:rgba(255,85,173,.08);
-border-color:rgba(255,85,173,.35);
-transform:translateY(-2px)
+/* ADD HABIT */
+
+.form{
+  display:flex;
+  gap:8px;
 }
 
-.message{
-text-align:center;padding:12px;margin-top:12px;border-radius:15px;
-background:linear-gradient(90deg,rgba(255,75,180,.06),rgba(110,90,255,.08));
-color:#a39aad;font-size:9px
+.form input{
+  flex:1;
+  min-width:0;
+
+  background:#0c0b10;
+  border:1px solid #3b3546;
+
+  color:#fff;
+
+  padding:11px;
+
+  border-radius:7px;
 }
 
-.graph{
-height:160px;display:flex;align-items:flex-end;gap:5px;
-border-bottom:1px solid rgba(255,255,255,.1)
-}
-.graph-day{
-flex:1;height:100%;display:flex;flex-direction:column;
-justify-content:flex-end;align-items:center;gap:5px
-}
-.graph-bar{
-width:80%;min-height:3px;border-radius:7px 7px 2px 2px;
-background:linear-gradient(to top,#ff51a9,#7464ff);
-transition:height .6s
-}
-.graph-bar.today{background:linear-gradient(to top,#55e3a5,#4bd3ff)}
-.graph-day small{font-size:6px;color:#696375}
-
-.badges{
-display:grid;grid-template-columns:repeat(4,1fr);gap:8px
-}
-.badge{
-padding:12px 3px;text-align:center;border-radius:17px;
-background:rgba(255,255,255,.04);opacity:.25;
-filter:grayscale(1);transition:.4s
-}
-.badge.unlocked{
-opacity:1;filter:none;
-background:linear-gradient(145deg,rgba(255,200,70,.13),rgba(255,70,170,.1));
-border:1px solid rgba(255,200,70,.18);
-box-shadow:0 5px 20px rgba(255,180,60,.12)
-}
-.badge-icon{font-size:26px}
-.badge b{display:block;font-size:7px;margin-top:5px}
-.badge small{color:#777080;font-size:6px;display:block;margin-top:3px}
-
-.reward-intro{
-color:#8b8398;font-size:9px;margin-bottom:12px;line-height:1.5
-}
-.rewards{
-display:grid;grid-template-columns:repeat(2,1fr);gap:9px
-}
-.reward{
-padding:15px;border-radius:20px;
-background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
-border:1px solid rgba(255,255,255,.08)
-}
-.reward-icon{font-size:28px}
-.reward h3{font-size:11px;margin-top:5px}
-.reward p{
-color:#777184;font-size:7px;line-height:1.4;
-min-height:22px;margin-top:3px
-}
-.reward button{
-width:100%;border:none;border-radius:12px;padding:9px;margin-top:9px;
-color:white;font-size:8px;font-weight:bold;
-background:linear-gradient(135deg,#ff55ad,#755fff);cursor:pointer
-}
-.reward button:disabled{
-background:rgba(255,255,255,.06);color:#625c6c;cursor:not-allowed
+.form input:focus{
+  outline:none;
+  border-color:#7952df;
 }
 
-.dream{
-display:flex;gap:15px;align-items:center;padding:20px;
-border-radius:27px;
-background:radial-gradient(circle at 90% 20%,rgba(120,80,255,.18),transparent 35%),rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.09);margin-bottom:15px
-}
-.dream-icon{font-size:43px}
-.dream small{color:#817890;font-size:7px;letter-spacing:2px}
-.dream h2{font-size:16px;margin:5px 0}
-.dream p{color:#878091;font-size:8px;line-height:1.5}
+/* HABIT LIST */
 
-.settings-bg,.add-mission-bg,.popup-bg{
-position:fixed;inset:0;background:rgba(0,0,0,.82);
-backdrop-filter:blur(12px);display:none;
-align-items:center;justify-content:center;padding:20px;z-index:200
-}
-.settings-bg.show,.add-mission-bg.show,.popup-bg.show{display:flex}
-
-.settings-bg{align-items:flex-end;z-index:100}
-.settings{
-width:100%;max-width:650px;
-background:linear-gradient(145deg,#17112e,#09071b);
-border:1px solid rgba(255,255,255,.15);
-border-radius:30px 30px 0 0;padding:25px;
-animation:slideUp .3s ease
-}
-@keyframes slideUp{
-from{transform:translateY(100%)}to{transform:translateY(0)}
-}
-.settings-header{
-display:flex;justify-content:space-between;align-items:center;margin-bottom:20px
-}
-.settings-header h2{font-size:21px}
-.close{
-border:none;background:rgba(255,255,255,.08);color:white;
-width:35px;height:35px;border-radius:50%;cursor:pointer
-}
-.setting{
-display:flex;align-items:center;justify-content:space-between;
-padding:15px 5px;border-bottom:1px solid rgba(255,255,255,.06)
-}
-.setting-info b{display:block;font-size:12px}
-.setting-info small{display:block;color:#777080;font-size:8px;margin-top:3px}
-.toggle{
-width:45px;height:25px;border-radius:30px;background:#3b3747;
-cursor:pointer;position:relative
-}
-.toggle::after{
-content:"";position:absolute;top:4px;left:4px;width:17px;height:17px;
-border-radius:50%;background:white;transition:.25s
-}
-.toggle.on{background:linear-gradient(90deg,#ff55ad,#7565ff)}
-.toggle.on::after{left:24px}
-.themes{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
-.theme{
-padding:8px 12px;border-radius:15px;border:1px solid rgba(255,255,255,.1);
-background:rgba(255,255,255,.05);color:white;font-size:8px;cursor:pointer
+.list{
+  margin-top:14px;
+  display:grid;
+  gap:7px;
 }
 
-.popup{
-width:100%;max-width:360px;text-align:center;padding:30px 23px;
-border-radius:32px;
-background:radial-gradient(circle at top,#392160,#110d26);
-border:1px solid rgba(255,255,255,.15);
-box-shadow:0 30px 100px rgba(0,0,0,.8);
-animation:pop .35s ease
-}
-@keyframes pop{
-from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}
-}
-.popup-stars{color:#ffd34e;letter-spacing:8px;font-size:13px}
-.popup-emoji{font-size:55px;margin:8px}
-.popup h2{font-size:23px}
-.popup p{color:#a29aaa;font-size:10px;margin-top:6px}
-.popup-xp{
-display:inline-block;padding:9px 18px;margin:17px 0;border-radius:20px;
-color:#ffd34e;background:rgba(255,210,70,.1);
-font-weight:bold;font-size:12px
-}
-.popup button{
-width:100%;border:none;border-radius:17px;padding:14px;
-background:linear-gradient(135deg,#ff55ad,#7564ff);
-color:white;font-weight:bold;cursor:pointer
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:10px;
+
+  background:#0d0c11;
+  border:1px solid #302c39;
+
+  border-radius:7px;
 }
 
-.add-mission{
-width:100%;max-width:380px;padding:25px;border-radius:30px;
-background:linear-gradient(145deg,#17112e,#09071b);
-border:1px solid rgba(255,255,255,.15);
-box-shadow:0 30px 100px rgba(0,0,0,.8)
+.delete{
+  background:none;
+  border:0;
+  color:#ff8b82;
+  padding:2px;
 }
-.add-mission h2{font-size:20px;margin-bottom:18px}
-.input-label{
-display:block;color:#8b8398;font-size:8px;margin-bottom:6px;letter-spacing:1px
-}
-.mission-input{
-width:100%;padding:12px;border-radius:13px;
-border:1px solid rgba(255,255,255,.12);
-background:rgba(255,255,255,.06);color:white;outline:none;
-margin-bottom:14px;font-size:11px
-}
-.mission-input:focus{border-color:#ff55ad}
-.mission-row{display:flex;gap:10px}
-.mission-row>div{flex:1}
-.mission-actions{display:flex;gap:8px;margin-top:5px}
-.mission-actions button{
-flex:1;padding:12px;border:none;border-radius:14px;
-color:white;cursor:pointer;font-size:9px;font-weight:bold
-}
-.cancel-mission{background:rgba(255,255,255,.07)}
-.save-mission{background:linear-gradient(135deg,#ff55ad,#7564ff)}
 
-@media(max-width:390px){
-.app{padding-left:10px;padding-right:10px}
-.logo h1{font-size:27px}
-.stats{gap:5px}
-.badges{grid-template-columns:repeat(4,1fr)}
-.habit-xp{font-size:7px}
-.mission-controls{gap:3px}
+.delete:hover{
+  background:#28151a;
+}
+
+/* DAILY CHART */
+
+.chart{
+  height:170px;
+
+  display:flex;
+  align-items:flex-end;
+
+  gap:5px;
+}
+
+.cbar{
+  flex:1;
+
+  background:#7350db;
+
+  border-radius:4px 4px 0 0;
+
+  min-height:3px;
+
+  transition:.3s;
+}
+
+.labels{
+  display:flex;
+  gap:5px;
+}
+
+.labels span{
+  flex:1;
+  text-align:center;
+  color:#77727e;
+  font-size:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .page{
+    padding:15px;
+  }
+
+  header{
+    display:block;
+  }
+
+  .controls{
+    margin-top:14px;
+  }
+
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .bottom{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:28px;
+  }
 }
 </style>
 </head>
 
+
 <body>
 
-<div class="space"></div>
-<div class="stars"></div>
-<div class="stars2"></div>
-<div class="stars3"></div>
-<div class="shooting"></div>
-<div class="shooting"></div>
-<div class="shooting"></div>
+<div class="page">
 
-<div class="app">
+<!-- HEADER -->
 
-<header class="top">
-<div class="logo">
-<small>MY TRACKER</small>
-<h1>Bharat<span>Patil</span></h1>
-<p>Build the life you once dreamed about.</p>
-</div>
+<header>
 
-<button class="settings-btn" onclick="openSettings()">⚙️</button>
+  <div>
+    <h1>February</h1>
+    <div class="sub">• Habit tracker •</div>
+  </div>
+
+  <div class="controls">
+
+    <button onclick="resetAll()">
+      Reset
+    </button>
+
+    <button class="primary" onclick="addHabit()">
+      + Add habit
+    </button>
+
+  </div>
+
 </header>
 
-<div class="xp">
-<div class="xp-left">
-<div class="xp-star">⭐</div>
-<div>
-<div class="xp-number" id="xp">0</div>
-<span class="xp-label">TOTAL XP</span>
-</div>
-</div>
 
-<div class="level">
-POWER LEVEL
-<b>LVL <span id="level">1</span></b>
-</div>
-</div>
-
-<section class="hero">
-<div class="moon">🌙</div>
-<div class="orbit"></div>
-
-<div class="planet" id="planet">🌱</div>
-<div class="ring"></div>
-<div class="ship">🚀</div>
-
-<div class="hero-text">
-<small>GALAXY JOURNEY</small>
-<h2 id="journeyTitle">The Dream Begins</h2>
-<p id="journeyMessage">Every great life begins with one decision.</p>
-
-<div class="big-progress">
-<div class="big-progress-top">
-<span>UNIVERSE PROGRESS</span>
-<b id="overallPercent">0%</b>
-</div>
-
-<div class="progress">
-<div id="overallBar"></div>
-</div>
-</div>
-</div>
-</section>
+<!-- STATISTICS -->
 
 <div class="stats">
-<div class="stat">
-<span>🔥</span><b id="currentStreak">0</b><small>STREAK</small>
-</div>
-<div class="stat">
-<span>🏆</span><b id="bestStreak">0</b><small>BEST</small>
-</div>
-<div class="stat">
-<span>🪐</span><b id="daysCompleted">0</b><small>PLANETS</small>
-</div>
-<div class="stat">
-<span>💎</span><b id="badgeNumber">0</b><small>BADGES</small>
-</div>
+
+  <div class="stat">
+
+    <div class="label">
+      Number of habits
+    </div>
+
+    <div class="value" id="hc">
+      10
+    </div>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="label">
+      Completed habits
+    </div>
+
+    <div class="value" id="done">
+      0
+    </div>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="label">
+      Completion rate
+    </div>
+
+    <div class="value" id="rate">
+      0%
+    </div>
+
+  </div>
+
+
+  <div class="stat">
+
+    <div class="label">
+      Progress
+    </div>
+
+    <div class="bar">
+
+      <i id="pb"></i>
+
+    </div>
+
+  </div>
+
 </div>
 
-<section class="card">
-<div class="title">
-<div>
-<small>🗺️ YOUR GALAXY</small>
-<h2>21 Day Journey</h2>
-</div>
-<strong id="dayNumber">DAY 1</strong>
-</div>
-<div class="days" id="days"></div>
+
+<!-- HABIT TRACKER -->
+
+<section class="sheet">
+
+  <div class="grid" id="head"></div>
+
+  <div class="grid" id="body"></div>
+
+
+  <div class="legend">
+
+    <span>
+      <i class="dot w1"></i>
+      Week 1
+    </span>
+
+    <span>
+      <i class="dot w2"></i>
+      Week 2
+    </span>
+
+    <span>
+      <i class="dot w3"></i>
+      Week 3
+    </span>
+
+    <span>
+      <i class="dot w4"></i>
+      Week 4
+    </span>
+
+  </div>
+
 </section>
 
-<section class="card">
-<div class="title">
-<div>
-<small>🌟 TODAY'S MISSION</small>
-<h2>Build Your Future</h2>
-</div>
-<strong id="completedText">0/8</strong>
-</div>
 
-<div id="habitList"></div>
+<!-- BOTTOM -->
 
-<button class="add-mission-btn" onclick="openAddMission()">
-＋ Add Your Own Mission
-</button>
+<div class="bottom">
 
-<div class="message" id="dailyMessage">
-Your future is waiting for you. 🌌
-</div>
-</section>
 
-<section class="card">
-<div class="title">
-<div>
-<small>⚡ POWER</small>
-<h2>Level Progress</h2>
-</div>
-<strong>LVL <span id="level2">1</span></strong>
-</div>
+  <!-- MY HABITS -->
 
-<div class="progress"><div id="levelProgress"></div></div>
+  <section class="card">
 
-<p style="color:#777080;font-size:8px;margin-top:7px">
-<span id="levelXP">0</span> / 100 XP to next level
-</p>
-</section>
+    <h2>
+      My Habits
+    </h2>
 
-<section class="card">
-<div class="title">
-<div>
-<small>📊 YOUR STORY</small>
-<h2>Progress Through The Stars</h2>
-</div>
-<span>🌠</span>
-</div>
-<div class="graph" id="graph"></div>
-</section>
 
-<section class="card">
-<div class="title">
-<div>
-<small>🏆 MEMORIES</small>
-<h2>Achievements</h2>
-</div>
-<strong id="badgeCount">0/8</strong>
-</div>
-<div class="badges" id="badges"></div>
-</section>
+    <div class="form">
 
-<section class="card">
-<div class="title">
-<div>
-<small>🎁 REWARD GALAXY</small>
-<h2>Spend Your XP</h2>
-</div>
-<span>💎</span>
-</div>
+      <input
+        id="new"
+        placeholder="Enter a new habit"
+      >
 
-<p class="reward-intro">
-XP isn't just a number.
-Turn your hard work into something you actually enjoy. ❤️
-</p>
+      <button
+        class="primary"
+        onclick="addHabit()"
+      >
+        Add
+      </button>
 
-<div class="rewards" id="rewards"></div>
-</section>
+    </div>
 
-<section class="dream">
-<div class="dream-icon">🌙</div>
-<div>
-<small>NEVER FORGET</small>
-<h2>Your dreams deserve your effort.</h2>
-<p>You don't need to change your entire life today. Just win today.</p>
-</div>
-</section>
 
-</div>
+    <div
+      class="list"
+      id="list"
+    ></div>
 
-<!-- SETTINGS -->
+  </section>
 
-<div class="settings-bg" id="settingsBg">
-<div class="settings">
 
-<div class="settings-header">
-<h2>⚙️ Tracker Settings</h2>
-<button class="close" onclick="closeSettings()">×</button>
-</div>
 
-<div class="setting">
-<div class="setting-info">
-<b>✨ Space Effects</b>
-<small>Stars and cosmic animations</small>
-</div>
-<div class="toggle on" id="effectsToggle" onclick="toggleEffects()"></div>
-</div>
+  <!-- DAILY PROGRESS -->
 
-<div class="setting">
-<div class="setting-info">
-<b>🚀 Auto Next Day</b>
-<small>Move to the next day after completion</small>
-</div>
-<div class="toggle on" id="autoToggle" onclick="toggleAuto()"></div>
-</div>
+  <section class="card">
 
-<div class="setting">
-<div class="setting-info">
-<b>🎨 Tracker Theme</b>
-<small>Choose your galaxy</small>
-</div>
-</div>
+    <h2>
+      Daily Progress
+    </h2>
 
-<div class="themes">
-<button class="theme" onclick="theme('purple')">💜 Dream</button>
-<button class="theme" onclick="theme('blue')">💙 Ocean</button>
-<button class="theme" onclick="theme('pink')">💗 Fantasy</button>
-<button class="theme" onclick="theme('green')">💚 Galaxy</button>
-</div>
 
-<div class="setting" style="margin-top:15px">
-<div class="setting-info">
-<b>🗑️ Reset Tracker</b>
-<small>Permanently erase your progress</small>
-</div>
+    <div
+      class="chart"
+      id="chart"
+    ></div>
 
-<button onclick="resetAll()" style="
-background:#35152c;border:1px solid #63304f;
-color:#ff79ba;border-radius:12px;padding:8px 12px;
-font-size:8px">RESET</button>
-</div>
 
-</div>
-</div>
+    <div
+      class="labels"
+      id="labels"
+    ></div>
 
-<!-- NORMAL POPUP -->
+  </section>
 
-<div class="popup-bg" id="popup">
-<div class="popup">
-<div class="popup-stars">✨ ⭐ ✨</div>
-<div class="popup-emoji" id="popupEmoji">🎉</div>
-<h2 id="popupTitle">Mission Complete!</h2>
-<p id="popupMessage">You did something amazing.</p>
 
-<div class="popup-xp">
-+<span id="earnedXP">10</span> XP ⭐
-</div>
-
-<button onclick="closePopup()">Continue My Journey 🚀</button>
-</div>
-</div>
-
-<!-- ADD / EDIT MISSION -->
-
-<div class="add-mission-bg" id="addMissionBg">
-<div class="add-mission">
-
-<h2 id="missionFormTitle">🚀 Add New Mission</h2>
-
-<label class="input-label">MISSION NAME</label>
-
-<input
-type="text"
-id="missionName"
-class="mission-input"
-placeholder="Example: Read 20 pages">
-
-<div class="mission-row">
-
-<div>
-<label class="input-label">EMOJI</label>
-
-<input
-type="text"
-id="missionEmoji"
-class="mission-input"
-placeholder="📚"
-maxlength="2">
-</div>
-
-<div>
-<label class="input-label">XP</label>
-
-<input
-type="number"
-id="missionXP"
-class="mission-input"
-placeholder="10"
-min="1"
-max="1000">
 </div>
 
 </div>
 
-<div class="mission-actions">
-
-<button class="cancel-mission" onclick="closeAddMission()">
-CANCEL
-</button>
-
-<button class="save-mission" id="missionSaveButton" onclick="saveMission()">
-ADD MISSION 🚀
-</button>
-
-</div>
-</div>
-</div>
 
 <script>
 
-/* =====================================================
-   DEFAULT MISSIONS
-===================================================== */
+/* =========================================
+   DEFAULT HABITS
+========================================= */
 
-const defaultHabits = [
-{name:"Wake up before 6 AM",icon:"🌅",xp:10,id:"default-0"},
-{name:"Sleep 7–9 hours",icon:"😴",xp:10,id:"default-1"},
-{name:"Workout / Running",icon:"🏃",xp:15,id:"default-2"},
-{name:"Keep room clean",icon:"✨",xp:10,id:"default-3"},
-{name:"Write today's goals",icon:"📝",xp:10,id:"default-4"},
-{name:"Study 6+ hours",icon:"📚",xp:20,id:"default-5"},
-{name:"No phone in morning",icon:"📵",xp:10,id:"default-6"},
-{name:"Complete priority goal",icon:"🎯",xp:15,id:"default-7"}
+let habits =
+JSON.parse(localStorage.getItem("habits")) ||
+[
+  "Get up early",
+  "Gym / exercise",
+  "Study / work",
+  "Read 10 pages",
+  "Drink enough water",
+  "No junk food",
+  "No social media",
+  "Meditation",
+  "Sleep 7–8 hours",
+  "Cold shower"
 ];
 
-/* =====================================================
-   JOURNEY
-===================================================== */
 
-const journey=[
-"The Dream Begins 🌱",
-"First Steps 🚶",
-"Momentum Rising ⚡",
-"Getting Stronger 💪",
-"Finding Your Rhythm 🎵",
-"Growing Every Day 🌱",
-"Building Power 🔥",
-"Climbing Higher 🏔️",
-"Halfway to the Stars 🌟",
-"Dreams Getting Closer 🚀",
-"You're Becoming Unstoppable ⚡",
-"Discipline Is Growing 🌳",
-"Keep Your Eyes on the Dream 👀",
-"Almost There 🌠",
-"You've Come So Far 💜",
-"The Stars Are Calling ✨",
-"Final Stretch 🏃",
-"Don't Look Back 🔥",
-"Your Story Is Amazing 📖",
-"One Last Push 🚀",
-"YOU ARE THE LEGEND 🏆"
-];
+/* =========================================
+   SAVED CHECKBOXES
+========================================= */
 
-/* =====================================================
-   BADGES
-===================================================== */
+let checks =
+JSON.parse(localStorage.getItem("checks")) || {};
 
-const badges=[
-{icon:"🌱",name:"First Step",days:1},
-{icon:"🔥",name:"3 Day Fire",days:3},
-{icon:"⚡",name:"7 Day Power",days:7},
-{icon:"🌟",name:"10 Day Star",days:10},
-{icon:"👑",name:"14 Day Royal",days:14},
-{icon:"🚀",name:"18 Day Rocket",days:18},
-{icon:"🏆",name:"21 Day Legend",days:21},
-{icon:"💎",name:"XP Master",days:0}
-];
 
-/* =====================================================
-   REWARDS
-===================================================== */
+const DAYS = 28;
 
-const rewards=[
-{icon:"🎬",name:"Movie Time",text:"Watch one movie guilt-free.",cost:100},
-{icon:"🍕",name:"Favorite Food",text:"Enjoy something you really like.",cost:150},
-{icon:"🎮",name:"Gaming Time",text:"Play without feeling guilty.",cost:200},
-{icon:"☕",name:"Relax Time",text:"Take a peaceful break.",cost:250},
-{icon:"🛍️",name:"Small Gift",text:"Buy something you've wanted.",cost:500},
-{icon:"🌴",name:"Adventure",text:"Plan a fun outing.",cost:800}
-];
 
-/* =====================================================
-   DATA
-===================================================== */
+/* =========================================
+   CHECKBOX KEY
+========================================= */
 
-let data=JSON.parse(localStorage.getItem("dreamUniverse21"))||{
-xp:0,
-currentDay:1,
-days:{},
-badges:[],
-rewards:[],
-effects:true,
-auto:true,
-customHabits:[],
-version:2
-};
+function key(index,day){
 
-if(!Array.isArray(data.customHabits)) data.customHabits=[];
-if(!data.days) data.days={};
-if(!Array.isArray(data.badges)) data.badges=[];
-if(!Array.isArray(data.rewards)) data.rewards=[];
-if(data.effects===undefined) data.effects=true;
-if(data.auto===undefined) data.auto=true;
-
-/* =====================================================
-   GIVE CUSTOM MISSIONS STABLE IDs
-===================================================== */
-
-data.customHabits.forEach((habit,index)=>{
-if(!habit.id){
-habit.id="custom-"+Date.now()+"-"+index;
-}
-});
-
-/* =====================================================
-   MIGRATE OLD DATA
-===================================================== */
-
-if(data.version!==2){
-
-const oldHabits=[
-...defaultHabits,
-...data.customHabits
-];
-
-Object.keys(data.days).forEach(day=>{
-
-if(!Array.isArray(data.days[day])) return;
-
-data.days[day]=data.days[day].map(item=>{
-
-if(typeof item==="number" && oldHabits[item]){
-return oldHabits[item].id;
-}
-
-return item;
-
-});
-
-});
-
-data.version=2;
-save();
-}
-
-/* =====================================================
-   GET ALL ACTIVE HABITS
-===================================================== */
-
-function getHabits(){
-
-return[
-...defaultHabits,
-...data.customHabits.filter(h=>!h.deleted)
-];
+  return index + "_" + day;
 
 }
 
-/* =====================================================
-   SAVE
-===================================================== */
+
+/* =========================================
+   SAVE DATA
+========================================= */
 
 function save(){
 
-localStorage.setItem(
-"dreamUniverse21",
-JSON.stringify(data)
-);
+  localStorage.setItem(
+    "habits",
+    JSON.stringify(habits)
+  );
+
+  localStorage.setItem(
+    "checks",
+    JSON.stringify(checks)
+  );
 
 }
 
-/* =====================================================
-   COMPLETED
-===================================================== */
 
-function completed(day){
+/* =========================================
+   WEEK COLOR
+========================================= */
 
-return Array.isArray(data.days[day])
-?data.days[day]:[];
+function weekClass(day){
 
-}
+  if(day <= 7){
 
-/* =====================================================
-   DAY COMPLETE
-===================================================== */
+    return "w1";
 
-function dayComplete(day){
+  }
 
-const habits=getHabits();
-const list=completed(day);
+  if(day <= 14){
 
-return habits.length>0 &&
-habits.every(h=>list.includes(h.id));
+    return "w2";
 
-}
+  }
 
-/* =====================================================
-   RENDER DAYS
-===================================================== */
+  if(day <= 21){
 
-function renderDays(){
+    return "w3";
 
-const box=document.getElementById("days");
-box.innerHTML="";
+  }
 
-for(let day=1;day<=21;day++){
-
-const button=document.createElement("button");
-button.className="day";
-
-if(day===data.currentDay)
-button.classList.add("active");
-
-if(dayComplete(day))
-button.classList.add("done");
-
-button.innerHTML=`
-<b>${day}</b>
-<small>${dayComplete(day)?"✓ DONE":"PLANET"}</small>
-`;
-
-button.onclick=()=>{
-data.currentDay=day;
-save();
-render();
-};
-
-box.appendChild(button);
-}
+  return "w4";
 
 }
 
-/* =====================================================
-   RENDER HABITS
-===================================================== */
 
-function renderHabits(){
-
-const box=document.getElementById("habitList");
-box.innerHTML="";
-
-const done=completed(data.currentDay);
-const habits=getHabits();
-
-habits.forEach((habit,index)=>{
-
-const isDone=done.includes(habit.id);
-
-const div=document.createElement("div");
-div.className="habit";
-
-if(isDone)
-div.classList.add("done");
-
-const custom=!habit.id.startsWith("default-");
-
-div.innerHTML=`
-
-<div class="habit-icon">${habit.icon}</div>
-
-<div class="habit-info">
-<b>${escapeHTML(habit.name)}</b>
-<small>
-${isDone?"Mission complete 🔥":"Tap when completed"}
-</small>
-</div>
-
-<div class="habit-xp">+${habit.xp} XP</div>
-
-${custom?`
-<div class="mission-controls">
-
-<button class="mission-edit"
-title="Edit mission">
-✏️
-</button>
-
-<button class="mission-delete"
-title="Delete mission">
-🗑️
-</button>
-
-</div>
-`:""}
-
-<button class="check">${isDone?"✓":""}</button>
-`;
-
-div.querySelector(".check").onclick=()=>{
-toggleHabit(habit.id);
-};
-
-if(custom){
-
-div.querySelector(".mission-edit").onclick=()=>{
-editMission(habit.id);
-};
-
-div.querySelector(".mission-delete").onclick=()=>{
-deleteMission(habit.id);
-};
-
-}
-
-box.appendChild(div);
-
-});
-
-document.getElementById("completedText").textContent=
-`${done.length}/${habits.length}`;
-
-updateMessage(done.length);
-
-}
-
-/* =====================================================
-   SAFE TEXT
-===================================================== */
-
-function escapeHTML(text){
-
-const div=document.createElement("div");
-div.textContent=text;
-return div.innerHTML;
-
-}
-
-/* =====================================================
-   TOGGLE HABIT
-===================================================== */
-
-function toggleHabit(id){
-
-if(!data.days[data.currentDay])
-data.days[data.currentDay]=[];
-
-const list=data.days[data.currentDay];
-const habits=getHabits();
-const habit=habits.find(h=>h.id===id);
-
-if(!habit)return;
-
-const position=list.indexOf(id);
-
-/* UNDO */
-
-if(position!==-1){
-
-list.splice(position,1);
-data.xp=Math.max(0,data.xp-habit.xp);
-
-save();
-render();
-return;
-
-}
-
-/* COMPLETE */
-
-list.push(id);
-data.xp+=Number(habit.xp);
-
-save();
-render();
-
-celebrate(
-"MISSION COMPLETE!",
-habit.name,
-habit.xp,
-habit.icon
-);
-
-if(list.length===habits.length){
-
-setTimeout(finishDay,800);
-
-}
-
-}
-
-/* =====================================================
-   FINISH DAY
-===================================================== */
-
-function finishDay(){
-
-const day=data.currentDay;
-const key=day+"_bonus";
-
-if(data.days[key])
-return;
-
-data.days[key]=true;
-data.xp+=50;
-
-save();
-
-setTimeout(()=>{
-
-celebrate(
-"PLANET UNLOCKED! 🪐",
-"You completed today's entire mission!",
-50,
-"🚀"
-);
-
-checkBadges();
-
-},700);
-
-if(data.auto && data.currentDay<21){
-
-setTimeout(()=>{
-
-data.currentDay++;
-save();
-render();
-
-},1800);
-
-}
-
-}
-
-/* =====================================================
-   MESSAGE
-===================================================== */
-
-function updateMessage(count){
-
-const message=document.getElementById("dailyMessage");
-const total=getHabits().length;
-
-if(count===0)
-message.textContent="Your future is waiting for you. 🌌";
-
-else if(count<Math.ceil(total/2))
-message.textContent="You started. That's already a victory. 🌱";
-
-else if(count<total)
-message.textContent="You're getting closer. Don't stop now! 🔥";
-
-else
-message.textContent="TODAY'S MISSION COMPLETE! YOU DID IT! 🏆";
-
-}
-
-/* =====================================================
-   STREAK
-===================================================== */
-
-function currentStreak(){
-
-let streak=0;
-
-for(let d=data.currentDay;d>=1;d--){
-
-if(dayComplete(d))
-streak++;
-else
-break;
-
-}
-
-return streak;
-}
-
-function bestStreak(){
-
-let best=0;
-let current=0;
-
-for(let d=1;d<=21;d++){
-
-if(dayComplete(d)){
-
-current++;
-best=Math.max(best,current);
-
-}else{
-
-current=0;
-
-}
-
-}
-
-return best;
-}
-
-/* =====================================================
-   STATS
-===================================================== */
-
-function updateStats(){
-
-let days=0;
-
-for(let d=1;d<=21;d++){
-
-if(dayComplete(d))
-days++;
-
-}
-
-document.getElementById("currentStreak").textContent=currentStreak();
-document.getElementById("bestStreak").textContent=bestStreak();
-document.getElementById("daysCompleted").textContent=days;
-document.getElementById("badgeNumber").textContent=data.badges.length;
-
-}
-
-/* =====================================================
-   GRAPH
-===================================================== */
-
-function renderGraph(){
-
-const box=document.getElementById("graph");
-box.innerHTML="";
-
-const totalHabits=getHabits().length;
-
-for(let d=1;d<=21;d++){
-
-const count=completed(d).filter(id=>
-getHabits().some(h=>h.id===id)
-).length;
-
-const percent=totalHabits?
-count/totalHabits*100:0;
-
-const wrapper=document.createElement("div");
-wrapper.className="graph-day";
-
-const bar=document.createElement("div");
-bar.className="graph-bar";
-
-if(d===data.currentDay)
-bar.classList.add("today");
-
-bar.style.height=Math.max(percent,3)+"%";
-
-const label=document.createElement("small");
-label.textContent=d;
-
-wrapper.appendChild(bar);
-wrapper.appendChild(label);
-box.appendChild(wrapper);
-
-}
-
-}
-
-/* =====================================================
-   OVERALL
-===================================================== */
-
-function updateOverall(){
-
-let total=0;
-
-const habits=getHabits();
-
-for(let d=1;d<=21;d++){
-
-total+=completed(d).filter(id=>
-habits.some(h=>h.id===id)
-).length;
-
-}
-
-const max=21*habits.length;
-
-const percent=max?
-Math.round(total/max*100):0;
-
-document.getElementById("overallPercent").textContent=percent+"%";
-document.getElementById("overallBar").style.width=percent+"%";
-document.getElementById("dayNumber").textContent="DAY "+data.currentDay;
-
-updatePlanet(percent);
-
-}
-
-/* =====================================================
-   PLANET
-===================================================== */
-
-function updatePlanet(percent){
-
-const planet=document.getElementById("planet");
-const title=document.getElementById("journeyTitle");
-const message=document.getElementById("journeyMessage");
-
-if(percent===0)planet.textContent="🌱";
-else if(percent<20)planet.textContent="🌿";
-else if(percent<40)planet.textContent="🌳";
-else if(percent<60)planet.textContent="🌸";
-else if(percent<80)planet.textContent="🌎";
-else if(percent<100)planet.textContent="🌍";
-else planet.textContent="🌟";
-
-title.textContent=journey[data.currentDay-1]||journey[0];
-message.textContent=
-"Day "+data.currentDay+" of your dream journey.";
-
-}
-
-/* =====================================================
-   LEVEL
-===================================================== */
-
-function updateLevel(){
-
-const level=Math.floor(data.xp/100)+1;
-const xp=data.xp%100;
-
-document.getElementById("xp").textContent=data.xp;
-document.getElementById("level").textContent=level;
-document.getElementById("level2").textContent=level;
-document.getElementById("levelXP").textContent=xp;
-document.getElementById("levelProgress").style.width=xp+"%";
-
-}
-
-/* =====================================================
-   BADGES
-===================================================== */
-
-function checkBadges(){
-
-const streak=bestStreak();
-
-badges.forEach((badge,index)=>{
-
-let unlock=false;
-
-if(badge.days===0)
-unlock=data.xp>=1000;
-else
-unlock=streak>=badge.days;
-
-if(unlock&&!data.badges.includes(index)){
-
-data.badges.push(index);
-data.xp+=25;
-
-save();
-
-setTimeout(()=>{
-
-celebrate(
-"BADGE UNLOCKED!",
-badge.name,
-25,
-badge.icon
-);
-
-render();
-
-},900);
-
-}
-
-});
-
-}
-
-/* =====================================================
-   BADGE RENDER
-===================================================== */
-
-function renderBadges(){
-
-const box=document.getElementById("badges");
-box.innerHTML="";
-
-badges.forEach((badge,index)=>{
-
-const unlocked=data.badges.includes(index);
-
-const div=document.createElement("div");
-div.className="badge";
-
-if(unlocked)
-div.classList.add("unlocked");
-
-div.innerHTML=`
-
-<div class="badge-icon">${badge.icon}</div>
-
-<b>${badge.name}</b>
-
-<small>
-${
-unlocked
-?"UNLOCKED"
-:badge.days===0
-?"1000 XP"
-:badge.days+" DAYS"
-}
-</small>
-
-`;
-
-box.appendChild(div);
-
-});
-
-document.getElementById("badgeCount").textContent=
-data.badges.length+"/"+badges.length;
-
-}
-
-/* =====================================================
-   REWARDS
-===================================================== */
-
-function renderRewards(){
-
-const box=document.getElementById("rewards");
-box.innerHTML="";
-
-rewards.forEach((reward,index)=>{
-
-const used=data.rewards.includes(index);
-const canBuy=data.xp>=reward.cost&&!used;
-
-const div=document.createElement("div");
-div.className="reward";
-
-div.innerHTML=`
-
-<div class="reward-icon">${reward.icon}</div>
-
-<h3>${reward.name}</h3>
-
-<p>${reward.text}</p>
-
-<button
-${canBuy?"":"disabled"}
-onclick="buyReward(${index})">
-
-${used?"CLAIMED ✓":"⭐ "+reward.cost+" XP"}
-
-</button>
-
-`;
-
-box.appendChild(div);
-
-});
-
-}
-
-/* =====================================================
-   BUY REWARD
-===================================================== */
-
-function buyReward(index){
-
-const reward=rewards[index];
-
-if(data.rewards.includes(index))
-return;
-
-if(data.xp<reward.cost){
-
-celebrate(
-"KEEP GOING! 🌱",
-"You need more XP for this reward.",
-0,
-"💎"
-);
-
-return;
-
-}
-
-data.xp-=reward.cost;
-data.rewards.push(index);
-
-save();
-
-celebrate(
-"REWARD UNLOCKED! 🎁",
-"You earned your "+reward.name+"!",
-reward.cost,
-reward.icon
-);
-
-render();
-
-}
-
-/* =====================================================
-   ADD / EDIT MISSION
-===================================================== */
-
-let editingMissionId=null;
-
-function openAddMission(){
-
-editingMissionId=null;
-
-document.getElementById("addMissionBg").classList.add("show");
-
-document.getElementById("missionFormTitle").textContent=
-"🚀 Add New Mission";
-
-document.getElementById("missionSaveButton").textContent=
-"ADD MISSION 🚀";
-
-document.getElementById("missionName").value="";
-document.getElementById("missionEmoji").value="🎯";
-document.getElementById("missionXP").value="10";
-
-setTimeout(()=>{
-document.getElementById("missionName").focus();
-},100);
-
-}
-
-/* =====================================================
-   EDIT MISSION
-===================================================== */
-
-function editMission(id){
-
-const mission=data.customHabits.find(h=>h.id===id);
-
-if(!mission)return;
-
-editingMissionId=id;
-
-document.getElementById("addMissionBg").classList.add("show");
-
-document.getElementById("missionFormTitle").textContent=
-"✏️ Edit Mission";
-
-document.getElementById("missionSaveButton").textContent=
-"SAVE CHANGES 💾";
-
-document.getElementById("missionName").value=mission.name;
-document.getElementById("missionEmoji").value=mission.icon;
-document.getElementById("missionXP").value=mission.xp;
-
-setTimeout(()=>{
-document.getElementById("missionName").focus();
-},100);
-
-}
-
-/* =====================================================
-   SAVE MISSION
-===================================================== */
-
-function saveMission(){
-
-const name=document.getElementById("missionName").value.trim();
-
-const emoji=
-document.getElementById("missionEmoji").value.trim()||"🎯";
-
-const xp=Number(document.getElementById("missionXP").value);
-
-if(!name){
-
-alert("Please enter a mission name.");
-return;
-
-}
-
-if(!xp||xp<1){
-
-alert("Please enter valid XP.");
-return;
-
-}
-
-/* EDIT */
-
-if(editingMissionId){
-
-const mission=data.customHabits.find(
-h=>h.id===editingMissionId
-);
-
-if(mission){
-
-mission.name=name;
-mission.icon=emoji;
-mission.xp=xp;
-
-}
-
-save();
-closeAddMission();
-render();
-
-celebrate(
-"MISSION UPDATED! ✨",
-name,
-0,
-emoji
-);
-
-return;
-
-}
-
-/* ADD */
-
-const newMission={
-id:"custom-"+Date.now()+"-"+Math.random().toString(36).slice(2),
-name:name,
-icon:emoji,
-xp:xp
-};
-
-data.customHabits.push(newMission);
-
-save();
-closeAddMission();
-render();
-
-celebrate(
-"NEW MISSION ADDED! 🚀",
-name,
-0,
-emoji
-);
-
-}
-
-/* =====================================================
-   DELETE MISSION
-===================================================== */
-
-function deleteMission(id){
-
-const mission=data.customHabits.find(
-h=>h.id===id
-);
-
-if(!mission)return;
-
-const answer=confirm(
-'Delete "'+mission.name+'"?\n\nThis will remove the mission from your tracker.'
-);
-
-if(!answer)return;
-
-/* Remove mission */
-
-data.customHabits=
-data.customHabits.filter(h=>h.id!==id);
-
-/* Remove its completion from all days */
-
-Object.keys(data.days).forEach(day=>{
-
-if(Array.isArray(data.days[day])){
-
-data.days[day]=data.days[day].filter(
-completedId=>completedId!==id
-);
-
-}
-
-});
-
-save();
-render();
-
-celebrate(
-"MISSION DELETED 🗑️",
-mission.name+" was removed from your tracker.",
-0,
-"🗑️"
-);
-
-}
-
-/* =====================================================
-   CLOSE MISSION FORM
-===================================================== */
-
-function closeAddMission(){
-
-document.getElementById("addMissionBg").classList.remove("show");
-
-editingMissionId=null;
-
-}
-
-/* =====================================================
-   POPUP
-===================================================== */
-
-function celebrate(title,message,xp,emoji){
-
-document.getElementById("popupTitle").textContent=title;
-document.getElementById("popupMessage").textContent=message;
-document.getElementById("earnedXP").textContent=xp;
-document.getElementById("popupEmoji").textContent=emoji;
-
-document.getElementById("popup").classList.add("show");
-
-particles();
-
-}
-
-function closePopup(){
-
-document.getElementById("popup").classList.remove("show");
-
-}
-
-/* =====================================================
-   PARTICLES
-===================================================== */
-
-function particles(){
-
-if(!data.effects)return;
-
-const symbols=["✨","⭐","💫","🌟","🚀","💜"];
-
-for(let i=0;i<20;i++){
-
-const p=document.createElement("div");
-
-p.textContent=
-symbols[Math.floor(Math.random()*symbols.length)];
-
-p.style.position="fixed";
-p.style.left=Math.random()*100+"%";
-p.style.top=50+Math.random()*30+"%";
-p.style.fontSize="20px";
-p.style.zIndex="300";
-p.style.transition="all 2s";
-
-document.body.appendChild(p);
-
-setTimeout(()=>{
-
-p.style.transform="translateY(-180px)";
-p.style.opacity="0";
-
-},50);
-
-setTimeout(()=>p.remove(),2200);
-
-}
-
-}
-
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-function openSettings(){
-
-document.getElementById("settingsBg").classList.add("show");
-
-}
-
-function closeSettings(){
-
-document.getElementById("settingsBg").classList.remove("show");
-
-}
-
-/* =====================================================
-   EFFECTS
-===================================================== */
-
-function toggleEffects(){
-
-data.effects=!data.effects;
-
-document.getElementById("effectsToggle")
-.classList.toggle("on",data.effects);
-
-document.querySelector(".stars").style.display=
-data.effects?"block":"none";
-
-document.querySelector(".stars2").style.display=
-data.effects?"block":"none";
-
-document.querySelector(".stars3").style.display=
-data.effects?"block":"none";
-
-save();
-
-}
-
-/* =====================================================
-   AUTO
-===================================================== */
-
-function toggleAuto(){
-
-data.auto=!data.auto;
-
-document.getElementById("autoToggle")
-.classList.toggle("on",data.auto);
-
-save();
-
-}
-
-/* =====================================================
-   THEMES
-===================================================== */
-
-function theme(type){
-
-const space=document.querySelector(".space");
-
-if(type==="purple"){
-
-space.style.background=
-"radial-gradient(circle at 15% 20%,rgba(118,52,255,.3),transparent 25%),radial-gradient(circle at 85% 25%,rgba(0,166,255,.18),transparent 25%),#03020d";
-
-}
-
-if(type==="blue"){
-
-space.style.background=
-"radial-gradient(circle at 15% 20%,rgba(0,130,255,.3),transparent 25%),radial-gradient(circle at 85% 25%,rgba(0,220,255,.2),transparent 25%),#020914";
-
-}
-
-if(type==="pink"){
-
-space.style.background=
-"radial-gradient(circle at 15% 20%,rgba(255,50,180,.3),transparent 25%),radial-gradient(circle at 85% 25%,rgba(160,50,255,.2),transparent 25%),#10030e";
-
-}
-
-if(type==="green"){
-
-space.style.background=
-"radial-gradient(circle at 15% 20%,rgba(0,255,150,.2),transparent 25%),radial-gradient(circle at 85% 25%,rgba(0,120,255,.2),transparent 25%),#020d0b";
-
-}
-
-}
-
-/* =====================================================
-   RESET
-===================================================== */
-
-function resetAll(){
-
-const answer=confirm(
-"⚠️ This will erase your entire 21-day journey. Continue?"
-);
-
-if(!answer)return;
-
-localStorage.removeItem("dreamUniverse21");
-location.reload();
-
-}
-
-/* =====================================================
-   RENDER
-===================================================== */
+/* =========================================
+   RENDER EVERYTHING
+========================================= */
 
 function render(){
 
-renderDays();
-renderHabits();
-updateStats();
-updateLevel();
-renderGraph();
-updateOverall();
-renderBadges();
-renderRewards();
 
-document.getElementById("effectsToggle")
-.classList.toggle("on",data.effects);
+  /* TOTAL HABITS */
 
-document.getElementById("autoToggle")
-.classList.toggle("on",data.auto);
+  document.getElementById("hc")
+    .textContent = habits.length;
 
-document.querySelector(".stars").style.display=
-data.effects?"block":"none";
 
-document.querySelector(".stars2").style.display=
-data.effects?"block":"none";
+  /* COMPLETED */
 
-document.querySelector(".stars3").style.display=
-data.effects?"block":"none";
+  let total =
+    habits.length * DAYS;
+
+
+  let completed =
+    Object.values(checks)
+    .filter(Boolean)
+    .length;
+
+
+  /* RATE */
+
+  let rate =
+    total
+    ? Math.round(
+        completed / total * 100
+      )
+    : 0;
+
+
+  document.getElementById("done")
+    .textContent = completed;
+
+
+  document.getElementById("rate")
+    .textContent = rate + "%";
+
+
+  document.getElementById("pb")
+    .style.width = rate + "%";
+
+
+  /* =====================================
+     DAY HEADER
+  ===================================== */
+
+  let header =
+    '<div class="cell month">February</div>';
+
+
+  for(
+    let day = 1;
+    day <= DAYS;
+    day++
+  ){
+
+    header +=
+      `<div class="cell ${weekClass(day)}">
+        ${day}
+      </div>`;
+
+  }
+
+
+  document.getElementById("head")
+    .innerHTML = header;
+
+
+
+  /* =====================================
+     HABIT GRID
+  ===================================== */
+
+  let body = "";
+
+
+  habits.forEach(
+    (habit,index)=>{
+
+
+      body +=
+        `<div class="cell name">
+          ${escapeHTML(habit)}
+        </div>`;
+
+
+      for(
+        let day = 1;
+        day <= DAYS;
+        day++
+      ){
+
+        let k =
+          key(index,day);
+
+
+        body +=
+          `<div class="cell">
+
+            <button
+              class="check ${checks[k] ? "done" : ""}"
+              onclick="toggle(${index},${day})"
+            >
+              ${checks[k] ? "✓" : ""}
+            </button>
+
+          </div>`;
+
+      }
+
+    }
+  );
+
+
+  document.getElementById("body")
+    .innerHTML = body;
+
+
+
+  /* =====================================
+     HABIT LIST
+  ===================================== */
+
+  document.getElementById("list")
+    .innerHTML = habits.map(
+      (habit,index)=>`
+
+        <div class="row">
+
+          <span>
+            ${escapeHTML(habit)}
+          </span>
+
+          <button
+            class="delete"
+            onclick="deleteHabit(${index})"
+          >
+            Delete
+          </button>
+
+        </div>
+
+      `
+    ).join("");
+
+
+
+  /* =====================================
+     DAILY CHART
+  ===================================== */
+
+  let chart = "";
+  let labels = "";
+
+
+  for(
+    let day = 1;
+    day <= DAYS;
+    day++
+  ){
+
+    let completedToday =
+      habits.reduce(
+        (sum,habit,index)=>{
+
+          return sum +
+            (
+              checks[key(index,day)]
+              ? 1
+              : 0
+            );
+
+        },
+        0
+      );
+
+
+    let height =
+      habits.length
+      ? Math.max(
+          3,
+          completedToday /
+          habits.length *
+          150
+        )
+      : 3;
+
+
+    chart +=
+      `<div
+        class="cbar"
+        style="height:${height}px"
+      ></div>`;
+
+
+    labels +=
+      `<span>${day}</span>`;
+
+  }
+
+
+  document.getElementById("chart")
+    .innerHTML = chart;
+
+
+  document.getElementById("labels")
+    .innerHTML = labels;
 
 }
 
-/* =====================================================
-   START
-===================================================== */
 
-save();
+/* =========================================
+   TOGGLE CHECKBOX
+========================================= */
+
+function toggle(index,day){
+
+  let k =
+    key(index,day);
+
+
+  checks[k] =
+    !checks[k];
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =========================================
+   ADD HABIT
+========================================= */
+
+function addHabit(){
+
+  let input =
+    document.getElementById("new");
+
+
+  let name =
+    input.value.trim();
+
+
+  if(!name){
+
+    input.focus();
+
+    return;
+
+  }
+
+
+  habits.push(name);
+
+
+  input.value = "";
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =========================================
+   DELETE HABIT
+========================================= */
+
+function deleteHabit(index){
+
+  if(
+    !confirm(
+      "Delete this habit?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  let newChecks = {};
+
+
+  Object.keys(checks)
+    .forEach(k=>{
+
+      let parts =
+        k.split("_");
+
+
+      let habitIndex =
+        Number(parts[0]);
+
+
+      let day =
+        Number(parts[1]);
+
+
+      if(
+        habitIndex !== index
+      ){
+
+        let newIndex =
+          habitIndex > index
+          ? habitIndex - 1
+          : habitIndex;
+
+
+        newChecks[
+          newIndex + "_" + day
+        ] =
+          checks[k];
+
+      }
+
+    });
+
+
+  habits.splice(index,1);
+
+
+  checks =
+    newChecks;
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+function resetAll(){
+
+  if(
+    !confirm(
+      "Clear all checkmarks?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  checks = {};
+
+
+  save();
+
+  render();
+
+}
+
+
+/* =========================================
+   SECURITY / TEXT CLEANING
+========================================= */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(
+      /[&<>"']/g,
+      function(character){
+
+        return {
+
+          "&":"&amp;",
+          "<":"&lt;",
+          ">":"&gt;",
+          '"':"&quot;",
+          "'":"&#039;"
+
+        }[character];
+
+      }
+    );
+
+}
+
+
+/* =========================================
+   START WEBSITE
+========================================= */
+
 render();
 
-</script>
-
-<!-- SERVICE WORKER -->
-
-<script>
-if("serviceWorker" in navigator){
-
-window.addEventListener("load",function(){
-
-navigator.serviceWorker.register("service-worker.js")
-.then(function(){
-
-console.log("Tracker app is ready 🚀");
-
-})
-.catch(function(error){
-
-console.log("Service Worker error:",error);
-
-});
-
-});
-
-}
 </script>
 
 </body>
